@@ -8947,7 +8947,7 @@ var ProjectConsumer_default = (Target) => {
             }
           }
           const { eventStore } = project;
-          let { _sharedProject: sharedProject } = me;
+          let { sharedProject: sharedProject } = me;
           if (eventStore && !eventStore.isEventStoreMixin && eventStore.autoLoad && !eventStore.count) {
             eventStore.autoLoad = false;
             me.delayAutoLoad = true;
@@ -9165,7 +9165,7 @@ var ProjectConsumer_default = (Target) => {
         const me = this, { project } = me, storeProject = store == null ? void 0 : store.project;
         if (me.buildingProjectConfig) {
           if (storeProject == null ? void 0 : storeProject.isProjectModel) {
-            me._sharedProject = storeProject;
+            me.sharedProject = storeProject;
           }
           project[storeName] = store;
           return;

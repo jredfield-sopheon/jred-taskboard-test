@@ -1,5 +1,5 @@
 import { TaskBoard } from './build/taskboard.module.js';
-import shared from './_shared/shared.module.js';
+import shared from './shared/shared.module.js';
 
 const taskBoard = new TaskBoard({
     appendTo : 'container',

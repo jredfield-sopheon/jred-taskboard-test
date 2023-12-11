@@ -1,4 +1,4 @@
-import './_shared/shared.js'; // not required, our example styling etc.
+import './shared/shared.js'; // not required, our example styling etc.
 import TaskBoard from './lib/TaskBoard/view/TaskBoard.js';
 import './lib/TaskBoard/feature/ColumnDrag.js';
 import './lib/TaskBoard/feature/SwimlaneDrag.js';
