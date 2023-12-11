@@ -77,6 +77,23 @@ const taskBoard = new TaskBoard({
             onClick  : 'up.onAddUserStory',
             disabled : true
         },
+        {
+            type     : 'combo',
+            ref      : 'storiesCombo',
+            items    :  [],
+            label    : 'Stories',
+            style    : { width: 350 },
+            onChange   : (v) => {
+                taskBoard.widgetMap.addButton.disabled = true;
+                taskBoard.project.taskStore.clearFilters();
+                taskBoard.project.taskStore.addFilter({
+                    id: "parentUID",
+                    filterBy: record => record.parentUID == v.value
+                });
+                parentViewUID = v.value;
+                console.log(parentViewUID)
+            }
+        },
         '->',
         { type : 'taskfilterfield' },
         // Field for filtering swimlanes
@@ -110,6 +127,7 @@ const taskBoard = new TaskBoard({
     },
 
     onBackClick() {
+        parentViewUID = null;
         taskBoard.widgetMap.addButton.disabled = true;
         taskBoard.swimlanes.removeAll();
         taskBoard.project.taskStore.clearFilters();
@@ -135,7 +153,6 @@ const taskBoard = new TaskBoard({
     onPriorityView() {
         taskBoard.widgetMap.addButton.disabled = true;
         taskBoard.swimlanes.removeAll();
-        //taskBoard.project.taskStore.clearFilters();
         parentViewUID = null;
         taskBoard.swimlaneField = "prio";
        
@@ -158,6 +175,7 @@ taskBoard.project.onLoad = () => {
         id: "parentUID",
         filterBy: record => record.parentUID == null
     })
+    taskBoard.widgetMap.storiesCombo.items = taskBoard.project.taskStore.allRecords.filter((r) => r.parentUID == null).map((r) => ({value: `${r.id}`, text: r.name}));
 }
 
 taskBoard.project.taskStore.onAdd = ({records}) => {
@@ -165,4 +183,10 @@ taskBoard.project.taskStore.onAdd = ({records}) => {
     records[0].description = " ";
     records[0].status = "Backlog";
     if(records[0].parentUID == null) records[0].parentUID = parentViewUID;
+    taskBoard.widgetMap.storiesCombo.items = taskBoard.project.taskStore.allRecords.filter((r) => r.parentUID == null).map((r) => ({value: `${r.id}`, text: r.name}));
+}
+
+taskBoard.project.taskStore.onChange = () => {
+    console.log(taskBoard.project.taskStore.allRecords.filter((r) => r.parentUID == null).map((r) => ({value: r.id, text: r.name})));
+    taskBoard.widgetMap.storiesCombo.items = taskBoard.project.taskStore.allRecords.filter((r) => r.parentUID == null).map((r) => ({value: `${r.id}`, text: r.name}));
 }
