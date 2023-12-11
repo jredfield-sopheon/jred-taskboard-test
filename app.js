@@ -145,10 +145,11 @@ const taskBoard = new TaskBoard({
 
     },
 
-    onAddUserStory() {
-        var t = taskBoard.project.taskStore.append({ name: "New Story", parentUID: null});
-        console.log(t)
-        taskBoard.swimlanes.add({ id: t.id, text : t.name });
+    async onAddUserStory() {
+        var t = taskBoard.project.taskStore.add({ name: "New Story", parentUID: null});
+        await taskBoard.project.commitAsync();
+        console.log(t);
+        taskBoard.swimlanes.add({ id: t[0].id, text : t[0].name });
     },
 });
 
@@ -161,6 +162,7 @@ taskBoard.project.onLoad = () => {
 
 taskBoard.project.taskStore.onAdd = ({records}) => {
     if(parentViewUID == null && records[0].parentUID == null) records[0].name = "New Story";
+    records[0].description = " ";
     records[0].status = "Backlog";
     if(records[0].parentUID == null) records[0].parentUID = parentViewUID;
 }
