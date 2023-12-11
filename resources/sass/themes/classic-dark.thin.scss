@@ -1,0 +1,33 @@
+@import 'vars/classic-dark-vars';
+@import '../all';
+
+.b-taskboardbase {
+    --taskboard-background                       : #1d1d1d;
+    --taskboard-color                            : #ddd;
+
+    --taskboard-card-body-color                  : #aaa;
+    --taskboard-card-background                  : #333;
+    --taskboard-card-box-shadow                  : 0 2px 1px -1px rgb(0, 0, 0, 0.35), 0 1px 1px rgb(0, 0, 0, 0.3);
+    --taskboard-card-hover-background            : #444;
+    --taskboard-card-hover-box-shadow            : 0 3px 2px -2px rgb(0, 0, 0, 0.4), 0 3px 3px rgb(0, 0, 0, 0.45);
+    --taskboard-card-selected-background         : #555;
+    --taskboard-card-selected-box-shadow         : 0 3px 2px -2px rgb(0, 0, 0, 0.45), 0 3px 3px rgb(0, 0, 0, 0.5);
+
+    --taskboard-card-readonly-color              : var(--taskboard-card-body-color);
+    --taskboard-card-readonly-background         : var(--taskboard-card-background) repeating-linear-gradient(45deg, #f0f0f020, #f0f0f020 10px, #00000000 10px, #00000000 20px);
+
+    --taskboard-header-text-transform            : none;
+    --taskboard-column-background                : #222;
+    --taskboard-column-header-font-size          : 1.1em;
+    --taskboard-swimlane-header-background       : #292929;
+    --taskboard-swimlane-header-font-size        : 1em;
+
+    --takboard-simple-task-edit-background-color : #00000050;
+
+    --taskboard-progressitem-background          : #444;
+
+    &.b-taskdrag {
+        --taskboard-taskdrag-drop-background : #1a1a1a;
+        --taskboard-taskdrag-drop-border     : 1px dashed #555;
+    }
+}

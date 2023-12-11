@@ -1,0 +1,46 @@
+@import '../../variables';
+
+.b-colorbox {
+    width             : 1em;
+    height            : 1em;
+    border-radius     : 3px;
+    background        : currentColor;
+    margin-inline-end : .5em;
+}
+
+.b-colorfield,
+// Used by TaskBoards status & prio pickers
+.b-colorboxcombo {
+    &:not(.b-colorless) {
+        .b-colorbox {
+            margin-inline : left($field-input-padding) .4em;
+
+            &.b-no-color {
+                background : none;
+                border     : 1px solid $colorpicker-no-color-border-color;
+            }
+        }
+
+        input {
+            padding-inline-start : 0;
+        }
+    }
+
+    &.b-colorless .b-colorbox {
+        display : none;
+    }
+
+    &.b-empty {
+        color : #ccc;
+
+        ::-webkit-input-placeholder {
+            color : $field-color;
+        }
+
+        .b-colorbox {
+            background : none;
+            border     : 1px solid currentColor;
+        }
+    }
+}
+

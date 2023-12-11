@@ -1,0 +1,35 @@
+@import '../../variables';
+
+.b-taskboardbase {
+    --taskboard-progressitem-background    : #eee;
+    --taskboard-progressitem-color         : currentColor;
+    --taskboard-progressitem-height        : 3px;
+    --taskboard-progressitem-border        : null;
+    --taskboard-progressitem-border-radius : 2px;
+}
+
+.b-taskboard-progress {
+    display     : flex; // Not needed for the default look, but simplifies adding a label using CSS later
+    align-items : center;
+    width       : 100%;
+
+    color       : var(--taskboard-progressitem-color);
+    height      : var(--taskboard-progressitem-height);
+}
+
+.b-taskboard-progress-outline {
+    width         : 100%;
+    height        : 100%;
+    border-radius : var(--taskboard-progressitem-border-radius);
+
+    background    : var(--taskboard-progressitem-background);
+    border        : var(--taskboard-progressitem-border);
+}
+
+.b-taskboard-progress-progress {
+    border-radius : 2px;
+    transition    : width .2s;
+    height        : 100%;
+
+    background    : var(--taskboard-progressitem-color);
+}

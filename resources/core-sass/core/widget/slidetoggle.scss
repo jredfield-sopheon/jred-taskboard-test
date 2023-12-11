@@ -1,0 +1,85 @@
+@use "sass:math";
+@import '../../variables';
+
+.b-slidetoggle {
+    --widget-primary-color-rgb              : #{hexToRGBString($blue)};
+
+    --slidetoggle-background-color          : rgb(var(--widget-primary-color-rgb));
+    --slidetoggle-toggle-background-opacity : 0.5;
+    --slidetoggle-toggle-background-color   : rgba(var(--widget-primary-color-rgb), var(--slidetoggle-toggle-background-opacity));
+
+    height                                  : $checkbox-box-height + $checkbox-container-vertical-margin * 2 + $checkbox-box-padding * 2;
+
+    &.b-disabled {
+        --slidetoggle-toggle-background-color : #{$button-disabled-background-color};
+        --slidetoggle-background-color        : #{$button-disabled-background-color};
+    }
+
+    .b-field-inner::before {
+        width : $slidetoggle-size * 2 + $slidetoggle-offset * 2;
+    }
+
+    input,
+    .b-slidetoggle-toggle {
+        width       : $slidetoggle-size * 2 + $slidetoggle-offset * 2;
+        height      : $slidetoggle-wrapper-height;
+        font-size   : inherit;
+        flex-shrink : 0;
+    }
+
+    input {
+        top : calc(($checkbox-input-size - $slidetoggle-wrapper-height) / -2);
+    }
+
+    input:checked + .b-slidetoggle-toggle {
+        opacity          : 1;
+        background-color : var(--slidetoggle-background-color);
+
+        .b-slidetoggle-thumb {
+            background-color : $white;
+            transform        : translate($slidetoggle-size + $slidetoggle-offset, $slidetoggle-offset);
+        }
+    }
+
+    .b-slidetoggle-toggle {
+        transition        : background-color .2s, opacity .2s;
+        opacity           : 0.7;
+        border-radius     : math.div($slidetoggle-wrapper-height, 2);
+        margin-inline-end : $slidetoggle-size * 0.4;
+        background-color  : rgba( $gray, .6 );
+    }
+
+    &:hover .b-slidetoggle-toggle {
+        opacity : 1;
+    }
+
+    .b-slidetoggle-thumb {
+        height           : $slidetoggle-size;
+        width            : $slidetoggle-size;
+        background-color : scale-color($white, $saturation : -60%);
+        border-radius    : math.div($slidetoggle-size, 2);
+        position         : absolute;
+        transform        : translate($slidetoggle-offset, $slidetoggle-offset);
+        transition       : transform $slidetoggle-transition-duration ease;
+    }
+
+    // RTL specific styling
+    &.b-rtl {
+        .b-slidetoggle-thumb {
+            transform : translate(-$slidetoggle-offset, $slidetoggle-offset);
+        }
+
+        input:checked + .b-slidetoggle-toggle .b-slidetoggle-thumb {
+            transform : translate(-$slidetoggle-size - $slidetoggle-offset, $slidetoggle-offset);
+        }
+    }
+}
+
+.b-slidetoggle-label {
+    cursor : pointer;
+}
+
+
+.b-container .b-slidetoggle .b-slidetoggle-label {
+    margin-inline-start : 0;
+}

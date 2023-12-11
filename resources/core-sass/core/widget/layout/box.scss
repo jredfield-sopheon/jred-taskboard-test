@@ -1,0 +1,34 @@
+.b-hbox,
+.b-vbox {
+    display         : flex;
+    align-items     : stretch;
+    justify-content : flex-start;
+    position        : relative;
+
+    // this opinion is not shared by all box layouts
+    // overflow : hidden;
+
+    > .b-box-center {
+        flex : 1 1 auto;
+
+        // This style is required to constrain large content inside layers of box layouts. Without it, the outer
+        // box may be sized to, for example, fit the viewport and its center would be allowed to be much taller.
+        // We cannot use "flex : 1 1 0" because that won't allow natural size to propagate outwards and give things
+        // like tooltips and popup dialogs their height. This style is often applied to box centers in panels from
+        // the body wrap or content element classes, but when docked strips are added to panels, extra box layouts
+        // are sometimes needed and it is these that lack this size constraint.
+        overflow : hidden;
+    }
+}
+
+.b-hbox {
+    flex-flow : row nowrap;
+}
+
+.b-vbox {
+    flex-flow : column nowrap;
+}
+
+.b-box-justify-stretch {
+    justify-content : stretch;
+}

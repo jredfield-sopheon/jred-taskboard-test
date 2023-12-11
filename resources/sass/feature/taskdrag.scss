@@ -1,0 +1,62 @@
+@import '../variables';
+
+.b-taskboardbase {
+    --taskboard-taskdrag-card-box-shadow    : 0 0 12px rgba(0, 0, 0, 0.2);
+    --taskboard-taskdrag-card-transform     : rotate(5deg);
+    --taskboard-taskdrag-drop-background    : #e3e3e399;
+    --taskboard-taskdrag-drop-border        : 1px dashed #aaa;
+    --taskboard-taskdrag-invalid-background : #c6282811;
+    --taskboard-taskdrag-invalid-color      : var(--taskboard-red);
+}
+
+.b-taskboard-card {
+    // Hide original card
+    &.b-drag-original {
+        display : none;
+    }
+}
+
+.b-taskboard-drag-proxy {
+    position       : absolute;
+    pointer-events : none;
+    z-index        : 3;
+    contain        : style layout size;
+
+    .b-taskboard-card {
+        // Cancel out the b-selected scale animation, otherwise it wont transition rotation here
+        animation  : none;
+
+        position   : absolute;
+        transition : transform .2s, left .2s, top .2s, color .2s, background-color .2s, border .2s;
+
+        transform  : var(--taskboard-taskdrag-card-transform);
+        box-shadow : var(--taskboard-taskdrag-card-box-shadow);
+
+        &:first-child {
+            transform : none;
+        }
+    }
+
+    // Get rid of the rotation, otherwise it will be factored in when translating later
+    &.b-pre-dropping .b-taskboard-card {
+        transform  : none;
+        transition : none;
+    }
+
+    // Will be translated to correct position, transition that
+    &.b-dropping .b-taskboard-card {
+        transition : transform .2s, box-shadow .2s;
+        box-shadow : var(--taskboard-card-box-shadow);
+    }
+}
+
+.b-taskboard-card-drop-indicator {
+    border-radius : var(--taskboard-card-border-top-radius) var(--taskboard-card-border-top-radius) var(--taskboard-card-border-bottom-radius) var(--taskboard-card-border-bottom-radius);
+    background    : var(--taskboard-taskdrag-drop-background);
+    border        : var(--taskboard-taskdrag-drop-border);
+
+    &.b-invalid {
+        background   : var(--taskboard-taskdrag-invalid-background);
+        border-color : var(--taskboard-taskdrag-invalid-color);
+    }
+}

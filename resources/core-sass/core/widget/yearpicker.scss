@@ -1,0 +1,111 @@
+.b-yearpicker {
+    width : max-content;
+
+    .b-toolbar.b-dock-top {
+        background-color : $datepicker-header-background-color;
+        color            : $datepicker-header-color;
+        border-bottom    : none;
+        min-height       : 0;
+        font-size        : 1.2em;
+
+        .b-toolbar-content {
+            // Important needed to override toolbar's CSS
+            padding : 0.5em 0.5ex !important;
+            gap     : 0.5ex;
+        }
+
+        .b-icon {
+            &:before {
+                line-height : normal;
+            }
+        }
+
+        // Need to override the default button color / bg color.
+        button {
+            border     : none;
+            min-height : 0;
+
+            &,
+            &:not(.b-tab):active:not([disabled]),
+            &:not(.b-tab):active:focus:not([disabled]) {
+                color : $datepicker-weekdays-color;
+            }
+
+        }
+
+        .b-tool {
+            color     : $datepicker-weekdays-color;
+
+            &:hover {
+                opacity : 0.7;
+            }
+
+            &:not(.b-contains-focus) {
+                background : transparent !important;
+            }
+
+            font-size : 80%;
+        }
+
+        .b-yearpicker-title {
+            margin-inline    : auto;
+            color            : inherit;
+            font-weight      : $widget-font-weight;
+            background-color : unset;
+
+            // If reconfigured into the first position, start-justify it.
+            &[data-item-index="0"] {
+                margin-inline : 0.5em auto !important;
+            }
+
+            &:not(.b-disabled):not(.b-tab):hover {
+                opacity          : 0.7;
+                background-color : unset;
+            }
+        }
+    }
+
+    .b-yearpicker-body-wrap {
+        background-color : $panel-background-color;
+    }
+
+    .b-yearpicker-content {
+        display               : grid;
+        align-items           : center;
+        grid-template-columns : $yearpicker-content-template-columns;
+        padding               : $yearpicker-content-padding;
+        gap                   : $yearpicker-content-gap;
+
+        button.b-yearpicker-year {
+            border-width   : $datepicker-cell-border-width;
+            border-style   : solid;
+            border-color   : transparent;
+            border-radius  : 1em;
+            height         : 2em;
+            background     : transparent;
+            font-size      : 1em;
+            cursor         : pointer;
+            color          : $panel-color;
+            font-family    : inherit;
+            font-weight    : $widget-font-weight;
+            padding-inline : 0;
+
+            &:hover {
+                color            : $datepicker-hover-cell-color;
+                background-color : $datepicker-hover-cell-background-color;
+                border-color     : $datepicker-hover-cell-border-color;
+            }
+
+            &.b-selected {
+                color            : $datepicker-selected-cell-color;
+                background-color : $datepicker-selected-cell-background-color;
+                border-color     : $datepicker-selected-cell-border-color;
+            }
+        }
+    }
+
+    &.b-outer, &.b-floating {
+        min-width  : 20.4em;
+        min-height : 18.2em;
+    }
+}

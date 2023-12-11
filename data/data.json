@@ -1,0 +1,215 @@
+{
+  "success" : true,
+  "tasks"   : {
+    "rows" : [
+      {
+        "id"          : 101,
+        "name"        : "STORY Story 1",
+        "description" : "Try it on any demo, reproduces easily",
+        "status"      : "In Progress",
+        "prio"        : "High",
+        "parentUID"   : null
+      },
+      {
+        "id"          : 102,
+        "name"        : "STORY Story 2",
+        "description" : "Try it on any demo, reproduces easily",
+        "status"      : "In Progress",
+        "prio"        : "Low",
+        "parentUID"   : null
+      },
+      {
+        "id"          : 103,
+        "name"        : "STORY Story 3",
+        "description" : "Try it on any demo, reproduces easily",
+        "status"      : "In Progress",
+        "prio"        : "Medium",
+        "parentUID"   : null
+      },
+      {
+        "id"          : 104,
+        "name"        : "STORY Story  4",
+        "description" : "Try it on any demo, reproduces easily",
+        "status"      : "In Progress",
+        "prio"        : "Low",
+        "parentUID"   : null
+      },
+      {
+        "id"          : 1,
+        "name"        : "TASK Bug with rendering",
+        "description" : "Try it on any demo, reproduces easily",
+        "status"      : "In Progress",
+        "prio"        : "High",
+        "parentUID"   : "101"
+      },
+      {
+        "id"          : 2,
+        "name"        : "TASK Add button to toolbar",
+        "description" : "Should look like a proper button, must be clickable",
+        "status"      : "Done",
+        "prio"        : "Medium",
+        "parentUID"   : "102"
+      },
+      {
+        "id"          : 3,
+        "name"        : "TASK Remove overflow",
+        "description" : "It is overflowing everywhere, it should not",
+        "status"      : "In Progress",
+        "prio"        : "Low",
+        "parentUID"    : "101"
+      },
+      {
+        "id"          : 4,
+        "name"        : "TASK Test in Safari",
+        "description" : "Also remember to test on IOS",
+        "status"      : "In Progress",
+        "prio"        : "Low",
+        "parentUID"   : "102"
+      },
+      {
+        "id"          : 5,
+        "name"        : "TASK Write tests",
+        "description" : "Boss says we have to, better get started soon since test coverage is approximately 5%",
+        "status"      : "Done",
+        "prio"        : "Low",
+        "parentUID"   : "103"
+      },
+      {
+        "id"          : 6,
+        "name"        : "TASK Refactor base class",
+        "description" : "It is currently a mess, un-mess it please",
+        "status"      : "Backlog",
+        "prio"        : "Medium",
+        "parentUID"   : "102"
+      },
+      {
+        "id"          : 7,
+        "name"        : "TASK Update themes",
+        "description" : "All themes need an overhaul, marketing is not happy with their current state",
+        "status"      : "Backlog",
+        "prio"        : "Low",
+        "parentUID"   : "101"
+      },
+      {
+        "id"          : 8,
+        "name"        : "TASK De-nest CSS",
+        "description" : "It is practically impossible to override any selector, needs a major de-nesting",
+        "status"      : "Backlog",
+        "prio"        : "High",
+        "parentUID"   : "101"
+      },
+      {
+        "id"          : 9,
+        "name"        : "TASK Compile using esbuild",
+        "description" : "So quick you will think it did not do anything...",
+        "status"      : "In Progress",
+        "prio"        : "Low",
+        "parentUID"   : "101"
+      },
+      {
+        "id"          : 10,
+        "name"        : "TASK Reconfigure grunt",
+        "description" : "Better ask DevOps to handle it",
+        "status"      : "In Progress",
+        "prio"        : "Low",
+        "parentUID"   : "103"
+      },
+      {
+        "id"          : 11,
+        "name"        : "TASK Upgrade babel",
+        "description" : "Need support for the latest syntax, devs go on and on about it",
+        "status"      : "In Progress",
+        "prio"        : "High",
+        "parentUID"   : "102"
+      },
+      {
+        "id"          : 12,
+        "name"        : "TASK Install yarn",
+        "description" : "Another task for DevOps",
+        "status"      : "Done",
+        "prio"        : "Low",
+        "parentUID"   : "101"
+      },
+      {
+        "id"          : 13,
+        "name"        : "TASK Replace var usages",
+        "description" : "Makes us look old",
+        "status"      : "Done",
+        "prio"        : "High",
+        "parentUID"   : "102"
+      },
+      {
+        "id"          : 14,
+        "name"        : "TASK In Progress PR",
+        "description" : "Why?",
+        "status"      : "Backlog",
+        "prio"        : "Low",
+        "parentUID"   : "103"
+      },
+      {
+        "id"          : 15,
+        "name"        : "TASK Submit issue",
+        "description" : "Which one? Have logged thousands",
+        "status"      : "Done",
+        "prio"        : "Low",
+        "parentUID"   : "101"
+      },
+      {
+        "id"          : 16,
+        "name"        : "TASK Fix xss vulnerabilities",
+        "description" : "Really important this one",
+        "status"      : "In Progress",
+        "prio"        : "High",
+        "parentUID"   : "104"
+      },
+      {
+        "id"          : 17,
+        "name"        : "TASK Apply destructuring",
+        "description" : "Will shave 100k of our bundle, since we have many many vars",
+        "status"      : "Backlog",
+        "prio"        : "Low",
+        "parentUID"   : "101"
+      },
+      {
+        "id"          : 18,
+        "name"        : "TASK Remove deprecated API",
+        "description" : "Josh says he deprecated it in last major, better verify it first",
+        "status"      : "Backlog",
+        "prio"        : "Medium",
+        "parentUID"   : "101"
+      },
+      {
+        "id"          : 19,
+        "name"        : "TASK Upgrade ES5 syntax",
+        "description" : "Really hard looping new devs in when they cant use the shiny new stuff",
+        "status"      : "Done",
+        "prio"        : "High",
+        "parentUID"   : "103"
+      },
+      {
+        "id"          : 20,
+        "name"        : "TASK In Progress package.json",
+        "description" : "Should it really be 1000+ lines?",
+        "status"      : "In Progress",
+        "prio"        : "High",
+        "parentUID"   : "101"
+      },
+      {
+        "id"          : 21,
+        "name"        : "TASK Try flutter",
+        "description" : "It is trendy, lets try it",
+        "status"      : "Done",
+        "prio"        : "Low",
+        "parentUID"   : "102"
+      },
+      {
+        "id"          : 22,
+        "name"        : "TASK Evaluate WebFlow",
+        "description" : "Our WordPress based site could use an upgrade",
+        "status"      : "Backlog",
+        "prio"        : "Low",
+        "parentUID"   : "102"
+      }
+    ]
+  }
+}

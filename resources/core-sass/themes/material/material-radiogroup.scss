@@ -1,0 +1,10 @@
+// Hover and focus effects must escape widget bounds.
+.b-radiogroup {
+    overflow : visible;
+    .b-radiogroup-body-wrap {
+        overflow : visible;
+        .b-radiogroup-content {
+            overflow : visible
+        }
+    }
+}

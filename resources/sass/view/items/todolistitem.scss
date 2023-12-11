@@ -1,0 +1,37 @@
+.b-taskboardbase {
+    --taskboard-todolist-color         : var(--taskboard-card-body-color);
+    --taskboard-todolist-checked-color : var(--taskboard-card-footer-color);
+}
+
+.b-taskboard-todolist-todo {
+    cursor : pointer;
+
+    i {
+        margin-inline-end : .5em;
+        opacity           : .7;
+        transition        : opacity .2s, color .2s;
+    }
+
+    span {
+        transition : color .2s;
+
+        color      : var(--taskboard-todolist-color);
+    }
+
+    &.b-checked {
+        i, span {
+            color : var(--taskboard-todolist-checked-color);
+        }
+    }
+}
+
+// Hover effect only applied to editable cards
+.b-taskboard-card:not(.b-readonly) {
+    .b-taskboard-todolist-todo:hover {
+        color : var(--taskboard-todolist-hover-color);
+
+        i {
+            opacity : 1;
+        }
+    }
+}

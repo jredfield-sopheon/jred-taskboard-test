@@ -1,0 +1,16 @@
+@import '../../variables';
+
+.b-taskboardbase {
+    --taskboard-ratingitem-color        : var(--taskboard-progressitem-background);
+    --taskboard-ratingitem-filled-color : currentColor;
+}
+
+.b-taskboard-rating {
+    i:not(.b-filled) {
+        color : var(--taskboard-ratingitem-color);
+    }
+
+    i.b-filled {
+        color : var(--taskboard-ratingitem-filled-color);
+    }
+}

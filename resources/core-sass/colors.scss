@@ -1,0 +1,162 @@
+@import 'variables';
+@import 'functions';
+
+//region Background color
+
+.b-color-indigo {
+    background-color : $indigo;
+}
+
+.b-color-blue {
+    background-color : $blue;
+}
+
+.b-color-cyan {
+    background-color : $cyan;
+}
+
+.b-color-red {
+    background-color : $red;
+}
+
+.b-color-deep-orange {
+    background-color : $deep-orange;
+}
+
+.b-color-orange {
+    background-color : $orange;
+}
+
+.b-color-amber {
+    background-color : $amber;
+}
+
+.b-color-yellow {
+    background-color : $yellow;
+}
+
+.b-color-teal {
+    background-color : $teal;
+}
+
+.b-color-green {
+    background-color : $green;
+}
+
+.b-color-light-green {
+    background-color : $light-green;
+}
+
+.b-color-lime {
+    background-color : $lime;
+}
+
+.b-color-purple {
+    background-color : $purple;
+}
+
+.b-color-violet {
+    background-color : $violet;
+}
+
+.b-color-pink {
+    background-color :$pink;
+}
+
+.b-color-dark-gray {
+    background-color : $dark-gray;
+}
+
+.b-color-gray {
+    background-color : $gray;
+}
+
+.b-color-light-gray {
+    background-color : $light-gray;
+}
+
+.b-color-white {
+    background-color : $white;
+}
+
+//endregion
+
+//region Widget color
+
+.b-indigo {
+    --widget-primary-color-rgb : #{hexToRGBString($indigo)};
+}
+
+.b-blue {
+    --widget-primary-color-rgb : #{hexToRGBString($blue)};
+}
+
+.b-cyan {
+    --widget-primary-color-rgb : #{hexToRGBString($cyan)};
+}
+
+.b-red {
+    --widget-primary-color-rgb : #{hexToRGBString($red)};
+}
+
+.b-deep-orange {
+    --widget-primary-color-rgb : #{hexToRGBString($deep-orange)};
+}
+
+.b-orange {
+    --widget-primary-color-rgb : #{hexToRGBString($orange)};
+}
+
+.b-amber {
+    --widget-primary-color-rgb : #{hexToRGBString($amber)};
+}
+
+.b-yellow {
+    --widget-primary-color-rgb : #{hexToRGBString($yellow)};
+}
+
+.b-teal {
+    --widget-primary-color-rgb : #{hexToRGBString($teal)};
+}
+
+.b-green {
+    --widget-primary-color-rgb : #{hexToRGBString($green)};
+}
+
+.b-light-green {
+    --widget-primary-color-rgb : #{hexToRGBString($light-green)};
+}
+
+.b-lime {
+    --widget-primary-color-rgb : #{hexToRGBString($lime)};
+}
+
+.b-purple {
+    --widget-primary-color-rgb : #{hexToRGBString($purple)};
+}
+
+.b-violet {
+    --widget-primary-color-rgb : #{hexToRGBString($violet)};
+}
+
+.b-pink {
+    --widget-primary-color-rgb :#{hexToRGBString($pink)};
+}
+
+.b-dark-gray {
+    --widget-primary-color-rgb : #{hexToRGBString($dark-gray)};
+}
+
+.b-gray {
+    --widget-primary-color-rgb : #{hexToRGBString($gray)};
+}
+
+.b-light-gray {
+    --widget-primary-color-rgb : #{hexToRGBString($light-gray)};
+}
+
+.b-white {
+    --widget-primary-color-rgb : #{hexToRGBString($white)};
+}
+
+//endregion

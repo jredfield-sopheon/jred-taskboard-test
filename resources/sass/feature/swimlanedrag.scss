@@ -1,0 +1,58 @@
+@import '../variables';
+
+.b-taskboardbase {
+    --taskboard-swimlanedrag-box-shadow      : var(--taskboard-taskdrag-card-box-shadow);
+    --taskboard-swimlanedrag-drop-background : var(--taskboard-taskdrag-drop-background);
+    --taskboard-swimlanedrag-drop-border     : var(--taskboard-taskdrag-drop-border);
+}
+
+// Hide original element
+.b-taskboard-swimlane.b-drag-original {
+    display : none;
+}
+
+// Proxy, clone of dragged swimlane
+.b-taskboard-swimlane-drag-proxy {
+    position       : absolute;
+    pointer-events : none;
+    z-index        : 3;
+    animation      : swimlane-drag-proxy .3s;
+
+    background     : var(--taskboard-background);
+    box-shadow     : var(--taskboard-swimlanedrag-box-shadow);
+
+    &.b-dropping {
+        transition : transform .2s, box-shadow .2s;
+        box-shadow : none;
+    }
+
+    .b-taskboard-swimlane-header {
+        // Override stickyness
+        position      : static;
+        margin-inline : 0;
+    }
+
+    .b-taskboard-swimlane-body {
+        padding-inline : 0;
+    }
+}
+
+// Drop indicator, bordered box
+.b-taskboard-swimlane-drop-indicator {
+    flex-shrink   : 0;
+    z-index       : 1;
+
+    background    : var(--taskboard-swimlanedrag-drop-background);
+    border        : var(--taskboard-swimlanedrag-drop-border);
+    margin-inline : var(--taskboard-body-padding);
+}
+
+@keyframes swimlane-drag-proxy {
+    0% {
+        box-shadow : none;
+    }
+
+    100% {
+        box-shadow : var(--taskboard-swimlanedrag-box-shadow);
+    }
+}

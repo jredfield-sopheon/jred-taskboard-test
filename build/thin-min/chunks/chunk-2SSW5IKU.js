@@ -1,0 +1,11 @@
+/*!
+ *
+ * Bryntum TaskBoard 5.6.2
+ *
+ * Copyright(c) 2023 Bryntum AB
+ * https://bryntum.com/contact
+ * https://bryntum.com/license
+ *
+ */
+import{Container as a,__publicField as i}from"./chunk-MZVS5JQA.js";var d=class extends a{static get configurable(){return{project:null,stm:null,text:null,color:null,showZeroActionBadge:null,cls:"b-undo-controls b-toolbar",layoutStyle:{alignItems:"stretch",flexFlow:"row nowrap",overflow:"visible"},items:{undoBtn:{type:"button",icon:"b-icon-undo",tooltip:"L{UndoRedo.UndoLastAction}",onAction:"up.onUndo"},transactionsCombo:{type:"combo",valueField:"idx",editable:!1,store:{},emptyText:"L{UndoRedo.NoActions}",onAction:"up.onTransactionSelected",displayValueRenderer:"up.transactionsDisplayValueRenderer"},redoBtn:{type:"button",icon:"b-icon-redo",tooltip:"L{UndoRedo.RedoLastAction}",onAction:"up.onRedo"}},overflowable:!0}}afterConstruct(){this.updateUndoRedoControls()}updateStm(o){this.detachListeners("undoredo"),o==null||o.ion({name:"undoredo",recordingstop:"updateUndoRedoControls",restoringstop:"updateUndoRedoControls",queueReset:"updateUndoRedoControls",disabled:"updateUndoRedoControls",thisObj:this})}changeItems(o){const{undoBtn:e,redoBtn:t}=o;return this.color&&(e&&(e.color=this.color),t&&(t.color=this.color)),this.text&&(e&&(e.text="L{UndoRedo.Undo}"),t&&(t.text="L{UndoRedo.Redo}")),super.changeItems(o)}updateProject(o){this.stm=o.stm}fillUndoRedoCombo(){const{transactionsCombo:o}=this.widgetMap;o&&(o.items=[[0,"Original data"],...this.stm.queue.map((e,t)=>[t+1,e||`Transaction ${t+1}`])])}updateUndoRedoControls(){const{stm:o,showZeroActionBadge:e}=this,{undoBtn:t,redoBtn:n,transactionsCombo:s}=this.widgetMap;t.badge=o.position||(e?"0":""),n.badge=o.length-o.position||(e?"0":""),t.disabled=!o.canUndo,n.disabled=!o.canRedo,this.fillUndoRedoCombo(),s&&(s.disabled=s.store.count<=1)}transactionsDisplayValueRenderer(o,e){var t;const n=((t=this.stm)==null?void 0:t.position)||0;return`${n} undo actions / ${e.store.count-n-1} redo actions`}onUndo(){this.stm.canUndo&&this.stm.undo()}onRedo(){this.stm.canRedo&&this.stm.redo()}onTransactionSelected(o){const{stm:e}=this,t=e.position-o.value;t>0?e.canUndo&&e.undo(t):t<0&&e.canRedo&&e.redo(-t)}};i(d,"$name","UndoRedoBase"),i(d,"type","undoredobase"),d.initClass(),d._$name="UndoRedoBase";export{d as UndoRedoBase};
+//# sourceMappingURL=chunk-2SSW5IKU.js.map

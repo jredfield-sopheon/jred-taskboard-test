@@ -1,0 +1,16 @@
+@import 'vars/classic-vars';
+@import '../all';
+
+:root, :host {
+    --taskboard-todolistfield-background-color : #{$field-background-color};
+    --taskboard-todolistfield-color            : #{$field-color};
+}
+
+.b-taskboardbase {
+    --taskboard-background                 : #bbb;
+    --taskboard-column-background          : #ccc;
+    --taskboard-column-header-font-size    : 1.1em;
+    --taskboard-swimlane-header-font-size  : 1em;
+    --taskboard-swimlane-header-background : #ccc;
+    --taskboard-header-text-transform      : none;
+}

@@ -1,0 +1,736 @@
+@import '../variables';
+
+// Default values are for stockholm theme
+.b-taskboardbase {
+    --taskboard-background                        : #e9e9e9;
+    --taskboard-color                             : #222;
+    --taskboard-font-size                         : null;
+    --taskboard-gap                               : 1em;
+    --taskboard-header-text-transform             : uppercase;
+
+    --taskboard-body-padding                      : null;
+
+    --taskboard-column-headers-sticky-background  : var(--taskboard-background);
+
+    --taskboard-column-count-color                : var(--taskboard-column-header-icon-color);
+    --taskboard-column-count-font-size            : .9em;
+    --taskboard-column-gap                        : var(--taskboard-gap);
+    --taskboard-column-padding                    : var(--taskboard-gap);
+    --taskboard-column-background                 : #f2f2f2;
+    --taskboard-column-border-radius              : null;
+    --taskboard-column-box-shadow                 : null;
+    --taskboard-column-min-width                  : 12em;
+    --taskboard-column-header-background          : var(--taskboard-column-background);
+    --taskboard-column-header-border-radius       : null;
+    --taskboard-column-header-border-top          : null;
+    --taskboard-column-header-box-shadow          : null;
+    --taskboard-column-header-color               : var(--taskboard-color);
+    --taskboard-column-header-icon-color          : #666;
+    --taskboard-column-header-font-size           : 1.2em;
+    --taskboard-column-header-font-weight         : 400;
+    --taskboard-column-header-gap                 : var(--taskboard-gap);
+    --taskboard-column-header-sticky-height       : 4em;
+    --taskboard-column-header-text-align          : null;
+    --taskboard-column-header-text-transform      : var(--taskboard-header-text-transform);
+    --taskboard-column-header-padding             : var(--taskboard-column-padding);
+    --taskboard-column-header-collapsed-title-top : 2.5em;
+
+    --taskboard-swimlane-header-background        : #e0e0e0;
+    --taskboard-swimlane-header-border-radius     : null;
+    --taskboard-swimlane-header-border-bottom     : null;
+    --taskboard-swimlane-header-border-top        : null;
+    --taskboard-swimlane-header-box-shadow        : null;
+    --taskboard-swimlane-header-color             : var(--taskboard-column-header-color);
+    --taskboard-swimlane-header-font-size         : .9em;
+    --taskboard-swimlane-header-icon-color        : var(----taskboard-column-header-icon-color);
+    --taskboard-swimlane-header-padding           : var(--taskboard-gap);
+    --taskboard-swimlane-header-text-transform    : var(--taskboard-header-text-transform);
+    --taskboard-swimlane-background               : null;
+
+    --taskboard-card-background                   : #fcfcfc;
+    --taskboard-card-border-top                   : null;
+    --taskboard-card-border-right                 : null;
+    --taskboard-card-border-bottom                : null;
+    --taskboard-card-border-left                  : null;
+    --taskboard-card-border-top-radius            : 3px;
+    --taskboard-card-border-bottom-radius         : 3px;
+    --taskboard-card-box-shadow                   : 0 2px 1px -1px #00000020, 0 1px 1px #00000015;
+    --taskboard-card-gap                          : var(--taskboard-gap);
+    --taskboard-card-inline-height                : 6.5em;
+    --taskboard-card-inline-large-height          : 8em;
+    --taskboard-card-padding                      : var(--taskboard-gap);
+
+    --taskboard-card-readonly-color               : var(--taskboard-light-gray);
+    --taskboard-card-readonly-background          : var(--taskboard-card-background) repeating-linear-gradient(45deg, #f0f0f0ff, #f0f0f0ff 10px, #ffffff00 10px, #ffffff00 20px);
+
+    --taskboard-card-hover-background             : #fff;
+    --taskboard-card-hover-box-shadow             : 0 3px 2px -2px #00000020, 0 3px 3px #00000015;
+    --taskboard-card-hover-transform              : translateY(-1px);
+
+    --taskboard-card-focus-background             : var(--taskboard-card-selected-background);
+    --taskboard-card-focus-outline-offset         : -1px;
+    --taskboard-card-focus-outline                : 2px solid #{$blue};
+
+    --taskboard-card-selected-background          : #fff9eb;
+    --taskboard-card-selected-box-shadow          : 0 3px 2px -2px #00000030, 0 3px 3px #00000023;
+    --taskboard-card-selected-transform           : translateY(-1px);
+    --taskboard-card-selected-animation           : null;
+    --taskboard-card-selected-outline             : null;
+    --taskboard-card-unselected-opacity           : null;
+    --taskboard-card-unselected-hover-opacity     : null;
+    --taskboard-card-unselected-box-shadow        : var(--taskboard-card-box-shadow);
+
+    --taskboard-card-header-background            : null;
+    --taskboard-card-header-color                 : var(--taskboard-color);
+    --taskboard-card-header-font-size             : null;
+    --taskboard-card-header-font-weight           : null;
+    --taskboard-card-header-gap                   : .5em;
+    --taskboard-card-header-padding               : var(--taskboard-card-padding);
+
+    --taskboard-card-body-color                   : #666;
+    --taskboard-card-body-gap                     : var(--taskboard-card-padding);
+    --taskboard-card-body-padding                 : 0 var(--taskboard-card-padding) var(--taskboard-card-padding) var(--taskboard-card-padding);
+
+    --taskboard-card-footer-color                 : #999;
+    --taskboard-card-footer-font-size             : 1em;
+    --taskboard-card-footer-gap                   : var(--taskboard-card-padding);
+    --taskboard-card-footer-padding               : 0 var(--taskboard-gap) var(--taskboard-gap) var(--taskboard-gap);
+
+    // Used for highlighting scrolled to card
+    --taskboard-card-highlight-color              : var(--taskboard-orange);
+
+    @include user-select-none();
+}
+
+.b-taskboardbase {
+    @include user-select-none();
+    font-size : var(--taskboard-font-size);
+}
+
+.b-taskboard-body {
+    align-items : flex-start;
+    display     : flex;
+    flex-flow   : column nowrap;
+    flex        : 1;
+    overflow    : auto;
+    position    : relative;
+
+    background  : var(--taskboard-background);
+
+    &.b-dom-transition * {
+        transition     : all .3s;
+        pointer-events : none;
+    }
+
+    // Buttons should use same color on focus outline as cards
+    button:focus-visible {
+        outline : var(--taskboard-card-focus-outline);
+    }
+}
+
+.b-taskboard-column-headers {
+    display        : flex;
+    width          : 100%;
+    z-index        : 3;
+
+    gap            : var(--taskboard-column-gap);
+    // Room for box-shadow, since overflow is hidden in default swimlane
+    padding        : var(--taskboard-body-padding);
+    padding-bottom : 0;
+
+    .b-sticky-headers & {
+        position   : sticky;
+        top        : 0;
+
+        background : var(--taskboard-column-headers-sticky-background);
+        height     : var(--taskboard-column-header-sticky-height);
+        // height not respected for some reason
+        min-height : var(--taskboard-column-header-sticky-height);
+    }
+
+    // To stretch header when there is horizontal scroll
+    .b-taskboard-body.b-horizontal-overflow & {
+        width : fit-content;
+        width : -moz-fit-content;
+    }
+}
+
+.b-taskboard-column-header {
+    display          : flex;
+    transition       : width .2s;
+    overflow         : hidden;
+    align-items      : center;
+
+    background-color : var(--taskboard-column-header-background);
+    border-radius    : var(--taskboard-column-header-border-radius);
+    border-top       : var(--taskboard-column-header-border-top);
+    box-shadow       : var(--taskboard-column-header-box-shadow);
+    font-weight      : var(--taskboard-column-header-font-weight);
+    text-align       : var(--taskboard-column-header-text-align);
+    text-transform   : var(--taskboard-column-header-text-transform);
+
+    &.b-collapsed {
+        .b-taskboard-column-expander {
+            margin    : 0;
+            transform : rotate(0deg);
+
+            .b-rtl & {
+                transform : rotate(180deg);
+            }
+        }
+    }
+
+    // Rotate title 90 deg when collapsed
+    &.b-rotate-title:not(.b-collapsing) {
+        overflow : visible;
+
+        .b-taskboard-column-header-padder {
+            position : relative;
+            overflow : visible;
+        }
+
+        .b-taskboard-column-title {
+            position             : absolute;
+            top                  : var(--taskboard-column-header-collapsed-title-top);
+            transform            : rotate(90deg);
+            overflow             : visible;
+            padding-inline-start : var(--taskboard-column-header-padding);
+
+            .b-rtl & {
+                transform : rotate(270deg);
+            }
+        }
+    }
+
+    button, i {
+        color : var(--taskboard-column-header-icon-color);
+
+        &:hover {
+            color : var(--taskboard-column-header-color);
+        }
+    }
+}
+
+.b-taskboard-column-header-padder {
+    display     : flex;
+    flex        : 1;
+    align-items : stretch;
+    overflow    : hidden;
+    width       : 0;
+
+    gap         : var(--taskboard-column-header-gap);
+    padding     : var(--taskboard-column-header-padding);
+
+    .b-collapsed:not(.b-collapsing) > & {
+        justify-content : center;
+        //padding         : 0;
+    }
+
+    > * {
+        display     : flex;
+        align-items : center;
+    }
+
+    // Hide in case used by demos
+    .b-collapsed > &::before {
+        display : none;
+    }
+
+    .b-collapsed:not(.b-rotate-title) > & > :not(.b-taskboard-column-expander) {
+        display : none;
+    }
+}
+
+.b-column-title-text {
+    flex : 1 1 auto;
+    overflow : hidden;
+    text-overflow : ellipsis;
+
+    .b-collapsed & {
+        overflow : visible;
+    }
+}
+
+.b-taskboard-column-title {
+    flex          : 1;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+    white-space   : nowrap;
+    width         : 0;
+
+    color         : var(--taskboard-column-header-color);
+    font-size     : var(--taskboard-column-header-font-size);
+    font-weight   : var(--taskboard-column-header-font-weight);
+}
+
+.b-taskboard-column-count {
+    transform           : none;
+    transition          : transform .2s;
+    margin-inline-start : .4em;
+
+    font-size           : var(--taskboard-column-count-font-size);
+    color               : var(--taskboard-column-count-color);
+}
+
+.b-taskboard-swimlane {
+    display          : flex;
+    flex-direction   : column;
+    min-width        : 100%;
+    width            : fit-content;
+    width            : -moz-fit-content;
+    flex-shrink      : 0;
+
+    background-color : var(--taskboard-swimlane-background);
+
+    > .b-taskboard-column {
+        min-height : 2em;
+    }
+
+    &.b-collapsed {
+        .b-taskboard-swimlane-body {
+            height : 0 !important;
+        }
+
+        .b-taskboard-swimlane-expander {
+            transform : rotate(0deg);
+        }
+
+        .b-taskboard-column {
+            overflow : hidden;
+        }
+    }
+
+    // No scrollbars in columns during swimlane expand/collapse
+    &.b-collapsing,
+    &.b-expanding {
+        .b-taskboard-column-body {
+            overflow : hidden;
+        }
+    }
+
+    &.b-last .b-taskboard-swimlane-body {
+        // Room for box-shadow below last swimlane
+        padding-bottom : var(--taskboard-body-padding);
+    }
+}
+
+// Not using swimlanes, fill height
+.b-taskboard-swimlane[data-lane=default] {
+    flex     : 1;
+    overflow : hidden; // Each column scrolls on its own when not using swimlanes
+
+    .b-taskboard-swimlane-body {
+        flex     : 1;
+        overflow : hidden;
+    }
+}
+
+.b-taskboard-swimlane-header {
+    display        : flex;
+    align-items    : center;
+    z-index        : 2;
+
+    // To match column headers
+    margin         : 0 var(--taskboard-body-padding);
+
+    background     : var(--taskboard-swimlane-header-background);
+    border-radius  : var(--taskboard-swimlane-header-border-radius);
+    border-top     : var(--taskboard-swimlane-header-border-top);
+    border-bottom  : var(--taskboard-swimlane-header-border-bottom);
+    box-shadow     : var(--taskboard-swimlane-header-box-shadow);
+    gap            : var(--taskboard-column-header-gap);
+    padding        : var(--taskboard-swimlane-header-padding);
+    text-transform : var(--taskboard-swimlane-header-text-transform);
+
+    * {
+        font-size : var(--taskboard-swimlane-header-font-size);
+    }
+
+    // Position sticky does not play well with dom transition, disable during it
+    .b-sticky-headers:not(.b-dom-transition) & {
+        position : sticky;
+        top      : var(--taskboard-column-header-sticky-height);
+    }
+
+    button, i {
+        color : var(--taskboard-swimlane-header-icon-color);
+
+        &:hover {
+            color : var(--taskboard-swimlane-header-color);
+        }
+    }
+
+    .b-collapsible > & {
+        cursor : pointer;
+    }
+}
+
+.b-taskboard-swimlane-title {
+    display     : flex;
+    align-items : center;
+    gap         : .5em;
+
+    color       : var(--taskboard-swimlane-header-color);
+    //font-size : var(--taskboard-swimlane-header-font-size);
+
+    .b-sticky-headers:not(.b-dom-transition) & {
+        position : sticky;
+
+        left     : var(--taskboard-swimlane-header-padding);
+
+        .b-rtl & {
+            left  : auto;
+            right : var(--taskboard-swimlane-header-padding);
+        }
+    }
+}
+
+.b-taskboard-swimlane-count {
+    font-size : var(--taskboard-column-count-font-size);
+}
+
+.b-taskboard-column-expander,
+.b-taskboard-swimlane-expander {
+    cursor     : pointer;
+    font-size  : 1.4em;
+    transform  : rotate(180deg);
+    transition : transform .2s;
+    position   : relative;
+    border     : none;
+    background : transparent;
+
+    .b-rtl & {
+        transform : rotate(0deg);
+    }
+}
+
+.b-taskboard-column-expander {
+    margin-inline-end : -.5em;
+    padding           : 0;
+    // Move it towards the end
+    order             : 500;
+}
+
+.b-taskboard-swimlane-body {
+    display        : flex;
+    flex-direction : row;
+    height         : 100%; // When virtualizing it is not sized by cards
+    transition     : height .2s, flex .2s;
+
+    gap            : var(--taskboard-column-gap);
+    // Room for box-shadow, since overflow is hidden in default swimlane
+    padding        : 0 var(--taskboard-body-padding);
+}
+
+.b-taskboard-column-header,
+.b-taskboard-column {
+    min-width : var(--taskboard-column-min-width);
+
+    &.b-fixed-width {
+        flex-shrink : 0;
+    }
+
+    &:not(.b-fixed-width) {
+        flex : 1;
+    }
+
+    &.b-collapsed {
+        flex            : unset;
+        width           : 0 !important;
+        min-width       : 3em;
+        justify-content : center;
+    }
+
+    &.b-expanding {
+        flex : unset;
+    }
+}
+
+.b-taskboard-column {
+    display          : flex;
+    flex-flow        : column nowrap;
+    position         : relative;
+    transition       : width .2s;
+    contain          : style layout;
+
+    background-color : var(--taskboard-column-background);
+    border-radius    : var(--taskboard-column-border-radius);
+    box-shadow       : var(--taskboard-column-box-shadow);
+
+    // Hide cards when fully collapsed
+    &.b-collapsed:not(.b-collapsing) {
+        .b-taskboard-column-bbar,
+        .b-taskboard-card {
+            display : none;
+        }
+    }
+}
+
+// Displaying more than one card per row, make them equal height
+.b-inline {
+    .b-taskboard-card {
+        overflow : hidden;
+
+        height   : var(--taskboard-card-inline-height);
+    }
+
+    &.b-2-tasks-per-row {
+        .b-taskboard-card {
+            height : var(--taskboard-card-inline-large-height);
+        }
+    }
+}
+
+.b-taskboard-column-body {
+    flex       : 1;
+    height     : fit-content;
+    height     : -moz-fit-content;
+    overflow   : auto;
+    // To leave some space to drop a card into an empty swimlanes column
+    min-height : calc(2 * var(--taskboard-column-padding) + var(--taskboard-card-gap));
+    //min-height     : 100%;
+    contain    : style layout;
+}
+
+
+.b-taskboard-column-body-inner {
+    display        : grid;
+    grid-auto-rows : min-content;
+    align-items    : start;
+
+    gap            : var(--taskboard-card-gap);
+    padding        : var(--taskboard-column-padding);
+    min-height     : 100%;
+    width          : 100%;
+
+    // Boosts layout performance, but means we have to used fixed height on swimlanes
+    .b-virtualized & {
+        //width    : calc(100% - var(--taskboard-column-padding) * 2);
+        position : absolute;
+    }
+}
+
+.b-taskboard-card {
+    position            : relative;
+    cursor              : pointer;
+    min-height          : 2em;
+    min-width           : 0;
+    opacity             : 1;
+    transition          : background .2s linear, transform .2s ease, box-shadow .2s linear, opacity .2s linear, height .2s ease-in;
+    contain             : style; /*layout*/
+    // Not using layout, since it promotes card to a layer
+
+    background          : var(--taskboard-card-background);
+    border-radius       : var(--taskboard-card-border-top-radius) var(--taskboard-card-border-top-radius) var(--taskboard-card-border-bottom-radius) var(--taskboard-card-border-bottom-radius);
+    border-block-start  : var(--taskboard-card-border-top); // Top
+    border-inline-end   : var(--taskboard-card-border-right); // Right
+    border-block-end    : var(--taskboard-card-border-bottom); // Bottom
+    border-inline-start : var(--taskboard-card-border-left); // Left
+    box-shadow          : var(--taskboard-card-box-shadow);
+
+    &:hover {
+        background : var(--taskboard-card-hover-background);
+        box-shadow : var(--taskboard-card-hover-box-shadow);
+
+        transform  : var(--taskboard-card-hover-transform);
+    }
+
+    // Dont highlight tasks on hover when dragging
+    .b-taskboardbase.b-dragging-task &:hover {
+        background : var(--taskboard-card-background);
+        box-shadow : var(--taskboard-card-box-shadow);
+        transform  : none;
+    }
+
+    &.b-selected {
+        animation-name     : var(--taskboard-card-selected-animation);
+        animation-duration : .2s;
+
+        transform          : var(--taskboard-card-selected-transform);
+        background         : var(--taskboard-card-selected-background);
+        box-shadow         : var(--taskboard-card-selected-box-shadow);
+
+        &::after {
+            content        : '';
+            position       : absolute;
+            pointer-events : none;
+
+            border         : var(--taskboard-card-selected-outline);
+            border-radius  : var(--taskboard-card-border-top-radius) var(--taskboard-card-border-top-radius) var(--taskboard-card-border-bottom-radius) var(--taskboard-card-border-bottom-radius);
+            top            : var(--taskboard-card-focus-outline-offset);
+            right          : var(--taskboard-card-focus-outline-offset);
+            bottom         : var(--taskboard-card-focus-outline-offset);
+            left           : var(--taskboard-card-focus-outline-offset);
+        }
+    }
+
+    &.b-selected:hover {
+        animation-duration : -1;
+    }
+
+    &:focus-within {
+        background : var(--taskboard-card-focus-background);
+
+        .b-using-keyboard & {
+            outline        : var(--taskboard-card-focus-outline);
+            outline-offset : var(--taskboard-card-focus-outline-offset);
+        }
+    }
+
+    .b-has-selection &:not(.b-selected) {
+        box-shadow : var(--taskboard-card-unselected-box-shadow);
+        opacity    : var(--taskboard-card-unselected-opacity);
+
+        &:hover {
+            box-shadow : var(--taskboard-card-hover-box-shadow);
+            opacity    : var(--taskboard-card-unselected-hover-opacity);
+        }
+    }
+
+    &.b-fx-highlight {
+        animation : b-fx-highlight-card-animation 1s ease-out;
+    }
+
+    &.b-readonly {
+        background : var(--taskboard-card-readonly-background);
+        color      : var(--taskboard-card-readonly-color);
+
+        .b-taskboard-card-header::before {
+            content     : "#{ $fa-var-lock }";
+            font-family : $icon-font;
+            font-weight : $icon-font-weight;
+        }
+    }
+}
+
+@keyframes b-fx-highlight-card-animation {
+    0% {
+        box-shadow : var(--taskboard-card-box-shadow);
+    }
+    50% {
+        box-shadow : 0 0 3px 1px var(--taskboard-card-highlight-color);
+    }
+    100% {
+        box-shadow : var(--taskboard-card-box-shadow);
+    }
+}
+
+// Dont wrap text in headers as card gets smaller
+.b-medium-cards,
+.b-small-cards,
+.b-tiny-cards {
+    .b-taskboard-card-header .b-taskboard-text[data-role="item-name"] {
+        white-space : nowrap;
+        width       : 0;
+    }
+}
+
+.b-taskboard-column.b-micro-cards {
+    .b-taskboard-card {
+        height          : 2.5em;
+        min-height      : 2.5em;
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+    }
+
+    .b-taskboard-card-header,
+    .b-taskboard-card-body {
+        display : none;
+    }
+
+
+    .b-taskboard-card-footer {
+        padding : 0;
+    }
+}
+
+.b-taskboard-card-header {
+    position      : relative;
+    display       : flex;
+    flex-flow     : row nowrap;
+    align-items   : center;
+    transition    : background .2s linear;
+    overflow      : hidden;
+
+    background    : var(--taskboard-card-header-background);
+    border-radius : var(--taskboard-card-border-top-radius) var(--taskboard-card-border-top-radius) 0 0;
+    font-size     : var(--taskboard-card-header-font-size);
+    font-weight   : var(--taskboard-card-header-font-weight);
+    gap           : var(--taskboard-card-header-gap);
+    padding       : var(--taskboard-card-header-padding);
+
+    .b-taskboard-text {
+        overflow      : hidden;
+        text-overflow : ellipsis;
+
+        color         : var(--taskboard-card-header-color);
+
+        &[data-ref=text] {
+            flex : 1;
+        }
+    }
+}
+
+.b-taskboard-card-body {
+    display        : flex;
+    flex-direction : column;
+    overflow       : hidden;
+
+    gap            : var(--taskboard-card-body-gap);
+    padding        : var(--taskboard-card-body-padding);
+
+    .b-taskboard-text {
+        color : var(--taskboard-card-body-color);
+    }
+}
+
+// Remove top padding on footer if there is no card body
+.b-taskboard-card-header + .b-taskboard-card-footer {
+    padding-top : 0;
+}
+
+.b-taskboard-card-footer {
+    align-items    : center;
+    display        : flex;
+    flex-direction : row;
+    overflow       : hidden;
+
+    gap            : var(--taskboard-card-footer-gap);
+    padding        : var(--taskboard-card-footer-padding);
+
+    .b-taskboard-text {
+        flex : 1;
+    }
+
+    .b-taskboard-taskitem {
+        font-size : var(--taskboard-card-footer-font-size);
+        color     : var(--taskboard-card-footer-color);
+    }
+}
+
+@keyframes selected {
+    from {
+        transform : scale(1.0);
+    }
+
+    to {
+        transform : scale(1.03);
+    }
+}
+
+@media (max-width : 736px) {
+    // Hide all column header buttons except menu button
+    .b-taskboard-column-header-padder > button:not(.b-taskboard-column-header-menu-button) {
+        display : none;
+    }
+}
+
+@media (max-width : 480px) {
+    // Hide all column header buttons
+    .b-taskboard-column-header-padder > button {
+        display : none;
+    }
+}
+
+

@@ -1,0 +1,80 @@
+@import '../variables';
+
+.b-taskboardbase {
+    --takboard-simple-task-edit-background-color : #dddddd50;
+    --takboard-simple-task-edit-border           : null;
+    --takboard-simple-task-edit-box-shadow       : null;
+}
+
+.b-simple-task-editor.b-editor {
+    background-color : transparent;
+    box-shadow       : none;
+    border-radius    : 0;
+    height           : auto !important;
+    overflow         : visible;
+    // Above cards
+    z-index          : 3;
+
+    .b-widget.b-field > .b-field-inner {
+        background     : transparent;
+        border         : none;
+        padding-inline : 0;
+    }
+
+    // Materials underline
+    .b-widget.b-textfield .b-field-inner::before {
+        bottom           : -0.5em;
+        left             : -0.5em;
+        right            : -0.5em;
+        border-radius    : 0 0 3px 3px;
+        background-color : #aaa;
+    }
+
+    input {
+        padding : 0;
+    }
+
+    &::before {
+        content          : '';
+
+        position         : absolute;
+
+        top              : -.5em;
+        right            : -.5em;
+        bottom           : -.5em;
+        left             : -.5em;
+
+        border-radius    : 3px;
+
+        border           : var(--takboard-simple-task-edit-border);
+        box-shadow       : var(--takboard-simple-task-edit-box-shadow);
+        background-color : var(--takboard-simple-task-edit-background-color);
+    }
+
+    // Reduce resource combo padding when used as inline editor
+    .b-resourcescombo.b-combo {
+        // Make sure close icons are shown (since we shrink padding)
+        overflow : visible;
+
+        input {
+            // Cannot hide with display : none, it affects functionality
+            width             : 0;
+            margin-inline-end : -0.5em;
+        }
+
+        .b-chipview {
+            overflow : visible;
+            padding  : 0;
+        }
+    }
+
+    // Move expander icon closer to the edge in combos
+    [data-ref=expand] {
+        padding-inline : 0.5em 0;
+    }
+}
+
+.b-taskboard-taskitem.b-editing {
+    // Hide item being edited. Has to occupy space and be considered visible for editor to align correctly
+    opacity : 0;
+}

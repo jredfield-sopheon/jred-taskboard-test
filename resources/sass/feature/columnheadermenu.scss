@@ -1,0 +1,11 @@
+.b-column-header-button {
+    cursor     : pointer;
+    font-size  : 1.2em;
+    order      : 600;
+    border     : none;
+    background : transparent;
+}
+
+.b-rotate-title:not(.b-collapsing) .b-column-header-button {
+    display : none;
+}

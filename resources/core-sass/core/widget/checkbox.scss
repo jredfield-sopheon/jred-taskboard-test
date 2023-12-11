@@ -1,0 +1,126 @@
+@import '../../variables';
+@import '../../functions';
+
+.b-checkbox {
+    --widget-primary-color-rgb                 : #{hexToRGBString($gray)};
+
+    --checkbox-unchecked-check-opacity        : 0.1;
+    --checkbox-unchecked-check-color          : rgb(var(--widget-primary-color-rgb), var(--checkbox-unchecked-check-opacity));
+    --checkbox-unchecked-background-color     : transparent;
+    --checkbox-unchecked-border-color         : rgb(var(--widget-primary-color-rgb));
+
+    --checkbox-checked-check-color            : #fff;
+    --checkbox-checked-background-color       : rgb(var(--widget-primary-color-rgb));
+    --checkbox-checked-border-color           : rgb(var(--widget-primary-color-rgb));
+
+    --checkbox-disabled-unchecked-check-color : transparent;
+    --checkbox-disabled-checked-check-color   : rgba(128, 128, 128, 0.15);
+    --checkbox-disabled-background-color      : rgba(128, 128, 128, 0.1);
+    --checkbox-disabled-border-color          : rgba(128, 128, 128, 0.15);
+
+    --checkbox-check-color                    : var(--checkbox-unchecked-check-color);
+    --checkbox-background-color               : var(--checkbox-unchecked-background-color);
+    --checkbox-border-color                   : var(--checkbox-unchecked-border-color);
+
+    --checkbox-label-transition               : color 0.2s, background-color 0.2s;
+    --checkbox-input-transition               : color 0.5s, background-color 0.5s;
+
+    position                                  : relative;
+    align-items                               : center;
+
+    &.b-field-container {
+        > .b-field-inner {
+            min-height : 5.4ex;
+        }
+    }
+
+    > .b-field-inner {
+        border           : none;
+        background-color : transparent;
+        white-space      : nowrap; // prevent the [x] and the text from wrapping
+        word-break       : break-all; // w/o this a long first word could immediately wrap leaving [x] alone
+
+        .b-checkbox-label {
+            position    : relative;
+            font-size   : inherit;
+            cursor      : pointer;
+            color       : $label-color;
+            white-space : normal; // allow label text to wrap (above nowrap prevented it)
+
+            .b-container & {
+                color : $container-label-color;
+            }
+        }
+
+        // :before used as check icon
+        // default styling if no color specified
+        .b-checkbox-label:before {
+            font-family       : $icon-font;
+            font-weight       : $icon-font-weight;
+            display           : inline-flex;
+            justify-content   : center;
+            align-items       : center;
+            margin-inline-end : 0.4em;
+            font-size         : $checkbox-box-font-size;
+            width             : $checkbox-box-width;
+            height            : $checkbox-box-height;
+            padding           : $checkbox-box-padding;
+            border-radius     : $widget-border-radius;
+            transition        : var(--checkbox-label-transition);
+            background-color  : var(--checkbox-background-color);
+            border            : $checkbox-box-border-width solid var(--checkbox-border-color);
+        }
+
+        .b-checkbox-label:not(.b-radio-label):before {
+            content : "#{ $fa-var-check }";
+            color   : var(--checkbox-check-color);
+        }
+
+        input[type=checkbox] {
+            z-index    : 1;
+            opacity    : 0;
+            width      : $checkbox-input-size;
+            height     : $checkbox-input-size;
+            position   : absolute;
+            margin     : 0;
+            cursor     : pointer;
+            transition : var(--checkbox-input-transition);
+        }
+
+        input[type=checkbox]:checked + .b-checkbox-label:before {
+            --checkbox-check-color      : var(--checkbox-checked-check-color);
+            --checkbox-background-color : var(--checkbox-checked-background-color);
+            --checkbox-border-color     : var(--checkbox-checked-border-color);
+        }
+    }
+
+    &.b-disabled > .b-field-inner {
+
+        --checkbox-check-color      : var(--checkbox-disabled-unchecked-check-color);
+        --checkbox-background-color : var(--checkbox-disabled-background-color);
+        --checkbox-border-color     : var(--checkbox-disabled-border-color);
+
+        .b-checkbox-label {
+            color : $field-disabled-label-color;
+        }
+
+        input[type=checkbox]:checked + .b-checkbox-label:before {
+            --checkbox-check-color      : var(--checkbox-disabled-checked-check-color);
+            --checkbox-background-color : var(--checkbox-disabled-background-color);
+            --checkbox-border-color     : var(--checkbox-disabled-border-color);
+        }
+    }
+}
+
+.b-container .b-checkbox-label:before {
+    margin              : $checkbox-container-vertical-margin;
+    margin-inline-end   : 0.4em;
+    margin-inline-start : 0;
+    margin-top          : $checkbox-container-top-margin;
+}
+
+.b-checkbox.b-field-container:not(.b-field-container-inline) {
+    > .b-field-container-wrap {
+        margin-inline-start : 2.2em; // should match input width
+    }
+}

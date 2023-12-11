@@ -1,0 +1,59 @@
+@import '../../variables';
+
+.b-radio {
+
+    --radio-background-color  : #fff;
+    --radio-dot-color         : var(----radio-background-color);
+    --radio-border-color      : rgb(var(--widget-primary-color-rgb));
+    --radio-checked-dot-color : rgb(var(--widget-primary-color-rgb));
+    --radio-disabled-color    : #{$button-disabled-background-color};
+
+    &.b-disabled {
+        --radio-border-color      : var(--radio-disabled-color);
+        --radio-checked-dot-color : var(--radio-disabled-color);
+    }
+
+    input[type=radio]:checked {
+        --radio-dot-color : var(--radio-checked-dot-color);
+    }
+
+    input[type=radio] {
+        border-radius      : 50%;
+        box-shadow         : 0 0 0 $radio-border-width var(--radio-border-color);
+        border             : .25em solid var(--radio-background-color);
+        background-color   : var(--radio-dot-color);
+        height             : $radio-size;
+        width              : $radio-size;
+        min-width          : $radio-size; // Don't let it shrink and loose circularity
+        /* Margin as large as border so not to be clipped by overflow hidden parent el */
+        margin             : $radio-border-width;
+        z-index            : 1;
+        // Safari
+        -webkit-appearance : none;
+        appearance         : none;
+        cursor             : pointer;
+    }
+
+    /* forcing keyboard focus appearance */
+    input[type=radio]:focus-visible {
+        outline        : $radio-border-width solid $widget-highlight-color;
+        outline-offset : 0;
+    }
+
+    > .b-field-inner label.b-radio-label {
+        margin-inline-start : .4em;
+    }
+
+    /* Overrides checkbox css */
+    > .b-field-inner label.b-radio-label:before {
+        content : none;
+    }
+}
+
+// In firefox on a Windows machine that scale 125% this fixes bad box-shadow rendering. Should test in more browsers.
+@media screen and (min-resolution : 120dpi) {
+    .b-firefox .b-radio input {
+        transform : rotate(1deg);
+        margin    : calc(#{$radio-border-width} + 0.5px);
+    }
+}

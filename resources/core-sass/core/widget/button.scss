@@ -1,0 +1,279 @@
+@import '../../functions';
+@import '../../variables';
+
+.b-button {
+    --widget-primary-color-rgb                    : #{hexToRGBString($button-default-color)};
+    --button-background-opacity                   : 0.05;
+    --button-border-opacity                       : 0.3;
+    --button-text-color                           : var(--widget-primary-color-rgb);
+    --button-text-opacity                         : 1;
+    --button-hover-background-opacity             : var(--button-border-opacity);
+    --button-pressed-text-color                   : 255, 255, 255;
+    --button-pressed-background-opacity           : 0.8;
+    --button-pressed-hover-background-opacity     : 0.7;
+    --button-pressed-disabled-background-opacity  : 0.1;
+
+    --button-active-background-opacity            : 1;
+
+    --button-focus-background-opacity             : 0.3;
+    --button-pressed-focus-background-opacity     : 1;
+
+    --button-disabled-background-opacity          : 0;
+    --button-disabled-text-opacity                : 0.3;
+    --button-disabled-border-opacity              : 0.2;
+
+    --button-transparent-background-opacity       : 0;
+    --button-transparent-text-opacity             : 0.6;
+    --button-transparent-pressed-text-opacity     : 1;
+    --button-transparent-hover-background-opacity : 0.1;
+
+    position                                      : relative;
+    padding                                       : $button-padding;
+    min-height                                    : $button-min-height;
+    cursor                                        : pointer;
+    font-family                                   : inherit;
+    font-size                                     : $button-font-size;
+    font-weight                                   : $button-font-weight;
+    transition                                    : $button-transition;
+    white-space                                   : nowrap;
+    display                                       : inline-flex;
+    align-items                                   : center;
+    justify-content                               : center;
+    text-transform                                : $button-text-transform;
+
+    border                                        : $widget-border-width solid rgba(var(--widget-primary-color-rgb), var(--button-border-opacity));
+    background-color                              : rgba(var(--widget-primary-color-rgb), var(--button-background-opacity));
+    color                                         : rgba(var(--button-text-color), var(--button-text-opacity));
+
+    // Only stretch it width wise if there is text
+    &.b-text {
+        min-width : 3.3em;
+    }
+
+    // Transparent buttons have no background or border, unrelated to which theme is used
+    // Needs a specific selector to override colors
+    &.b-transparent {
+        --button-background-opacity : var(--button-transparent-background-opacity);
+        --button-text-opacity       : var(--button-transparent-text-opacity);
+        border                      : none;
+    }
+
+    &.b-pressed {
+        --button-background-opacity : var(--button-pressed-background-opacity);
+        --button-text-color         : var(--button-pressed-text-color);
+
+        &.b-transparent {
+            --button-text-color         : var(--widget-primary-color-rgb);
+            --button-background-opacity : var(--button-transparent-background-opacity);
+            --button-text-opacity       : var(--button-transparent-pressed-text-opacity);
+        }
+
+        &:hover:not(.b-disabled) {
+            --button-background-opacity : var(--button-pressed-hover-background-opacity);
+
+            &.b-transparent {
+                --button-background-opacity : var(--button-transparent-hover-background-opacity);
+            }
+        }
+
+        &[data-group]:not(.b-disabled):hover {
+            --button-background-opacity : var(--button-pressed-hover-background-opacity);
+        }
+    }
+
+    &:hover:not(.b-disabled) {
+        --button-background-opacity : var(--button-hover-background-opacity);
+
+        &.b-transparent {
+            --button-background-opacity : var(--button-transparent-hover-background-opacity);;
+        }
+    }
+
+    // User is pressing, either with mouse or space
+    &:active:not(.b-disabled),
+    &:active:focus:not(.b-disabled) {
+        --button-background-opacity : var(--button-active-background-opacity);
+        --button-text-color         : var(--button-pressed-text-color);
+    }
+
+    .b-using-keyboard &:focus,
+    &.b-using-keyboard:focus {
+        --button-background-opacity : var(--button-focus-background-opacity);
+
+        &.b-pressed:not(.b-transparent) {
+            --button-background-opacity : var(--button-pressed-focus-background-opacity);
+        }
+    }
+
+    &.b-disabled {
+        --button-background-opacity : var(--button-disabled-background-opacity);
+        --button-text-opacity       : var(--button-disabled-text-opacity);
+        --button-border-opacity     : var(--button-disabled-border-opacity);
+
+        &.b-pressed {
+            --button-background-opacity : var(--button-pressed-disabled-background-opacity);
+        }
+    }
+
+    @include user-select-none();
+
+    &:not(.b-tab) {
+        border-radius : $widget-border-radius;
+    }
+
+    // Remove inner focus outline in FF
+    &::-moz-focus-inner {
+        border : 0;
+    }
+
+    label {
+        cursor        : pointer;
+        overflow      : hidden;
+        text-overflow : ellipsis;
+    }
+
+    &.b-rotate-vertical {
+        min-height : 3em;
+        min-width  : $button-min-height;
+        padding    : rotateSides($button-padding);
+
+        label {
+            -webkit-writing-mode : vertical-lr;
+            -ms-writing-mode     : tb-lr;
+            writing-mode         : vertical-lr;
+        }
+    }
+
+    &.b-rotate-left {
+        flex-direction : column-reverse;
+
+        label {
+            transform : rotate(180deg);
+        }
+
+        i {
+            transform : rotate(270deg);
+        }
+    }
+
+    &.b-rotate-right {
+        flex-direction : column;
+
+        i {
+            transform : rotate(90deg);
+        }
+    }
+
+    &.b-icon-align-start {
+        i:not(.b-button-menu-icon) {
+            order : -100;
+        }
+
+        &:not(.b-rotate-vertical) label {
+            margin-inline-start : 0.5em;
+        }
+
+        &.b-rotate-right label {
+            margin-inline-end : 0.5em;
+        }
+
+        &.b-rotate-left label {
+            margin-inline-start : 0.5em;
+        }
+    }
+
+    &.b-icon-align-end {
+        i {
+            order : 100;
+        }
+
+        &:not(.b-rotate-vertical) label {
+            margin-inline-end : 0.5em;
+        }
+
+        &.b-rotate-right label {
+            margin-inline-start : 0.5em;
+        }
+
+        &.b-rotate-left label {
+            margin-inline-end : 0.5em;
+        }
+    }
+
+    .b-button-menu-icon {
+        margin-inline-start : 0.5em;
+    }
+
+    i {
+        font-size : 1em;
+    }
+
+    label:empty {
+        display : none;
+    }
+
+    &.b-badge {
+        // badge overflows button
+        overflow : visible !important;
+    }
+
+    &.b-rounded {
+        border-radius : 50%;
+        width         : 3em;
+        height        : 3em;
+    }
+
+    &:focus {
+        outline : none;
+    }
+
+    &:disabled {
+        cursor : default;
+    }
+
+    // Displayed in a toolbar
+    .b-toolbar-content > & {
+        font-size : $button-toolbar-font-size;
+    }
+
+    &.b-borderless {
+        border : none;
+    }
+}
+
+.b-button.b-raised {
+    --button-background-opacity               : 1;
+    --button-focus-background-opacity         : 0.7;
+    --button-hover-background-opacity         : 0.8;
+    --button-pressed-hover-background-opacity : 1;
+
+    color                                     : #{$button-color};
+    border                                    : none;
+
+    &:active {
+        box-shadow : inset 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    &.b-pressed {
+        box-shadow       : inset 0 0 5px rgba(0, 0, 0, 0.3);
+        background-image : linear-gradient(#00000033, #00000033);
+
+        .b-using-keyboard &:focus,
+        &.b-using-keyboard:focus {
+            background-image : linear-gradient(#00000011, #00000011);
+        }
+    }
+
+    &.b-disabled {
+        --widget-primary-color-rgb : #{hexToRGBString($button-disabled-background-color)};
+    }
+}
+
+// Sane defaults for buttons inside bottom toolbar of popups
+.b-popup .b-bottom-toolbar .b-button.b-text {
+    min-width : 8em;
+}
+
+a.b-button {
+    text-decoration : none;
+}

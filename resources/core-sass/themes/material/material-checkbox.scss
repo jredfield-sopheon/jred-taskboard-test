@@ -1,0 +1,106 @@
+@import '../../variables';
+
+.b-checkbox {
+    --checkbox-material-highlight-color        : rgb(var(--checkbox-main-color), var(--checkbox-material-highlight-opacity));
+    --checkbox-material-highlight-opacity      : 0;
+    --checkbox-material-hover-higlight-opacity : 0.1;
+    --checkbox-material-focus-higlight-opacity : 0.2;
+
+    // For materials focus/hover effect, requires !important because of tricky overflow rule in widget
+    overflow                                   : visible !important;
+
+    // Materials circular highlight
+    .b-field-inner::before {
+        content          : '';
+
+        display          : block;
+        z-index          : 0;
+
+        position         : absolute;
+        left             : -.65em;
+
+        .b-rtl & {
+            left  : auto;
+            right : -.65em;
+        }
+
+        width            : 2.6em;
+        height           : 2.6em;
+
+        border-radius    : 50%;
+        background-color : var(--checkbox-material-highlight-color);
+        transition       : background-color .2s;
+    }
+
+    &:not(.b-disabled) {
+        // Show highlight on focus
+        &:hover:focus-within,
+        &:focus-within {
+            --checkbox-material-highlight-opacity : var(--checkbox-material-focus-higlight-opacity);
+        }
+
+        // More transparent highlight on hover
+        &:hover {
+            --checkbox-material-highlight-opacity : var(--checkbox-material-hover-higlight-opacity);
+        }
+    }
+
+    // for use on dark background (demo header for example)
+    &.b-bright {
+        .b-checkbox-label:before {
+            border-color : $white;
+        }
+    }
+}
+
+// Materials circular highlight
+.b-radio {
+    .b-field-inner::before {
+        display : none;
+    }
+
+    &:not(.b-disabled) {
+        input[type=radio]::before {
+            content          : '';
+            display          : block;
+            position         : relative;
+            width            : 2.5em;
+            height           : 2.5em;
+            left             : 50%;
+            top              : 50%;
+            transform        : translate(-50%, -50%);
+            border-radius    : 50%;
+            background-color : transparent;
+            transition       : background-color .2s;
+        }
+
+        &:hover input::before {
+            background-color : transparentize($primary, .9);
+        }
+
+        &:hover:focus-within input::before,
+        &:focus-within input::before {
+            background-color : transparentize($primary, .8);
+        }
+    }
+}
+
+.b-radiogroup, .b-widget.b-radiogroup * {
+    overflow : visible;
+}
+
+.b-radiogroup, .b-widget.b-radiogroup {
+    // Ensure nonselected radio children are hidden
+    .b-radio.b-collapsed .b-field-container-wrap {
+        overflow : hidden;
+    }
+}
+
+.b-rtl .b-radio {
+    &:not(.b-disabled) {
+        input[type=radio]::before {
+            transform : translate(50%, -50%);
+            right     : 50%;
+        }
+    }
+}

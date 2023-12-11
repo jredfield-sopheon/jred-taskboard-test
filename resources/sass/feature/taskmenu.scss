@@ -1,0 +1,28 @@
+@import '../variables';
+
+.b-resource-menu-item {
+    .b-resource-menu-item-inner {
+        display     : flex;
+        gap         : .5em;
+        align-items : center;
+    }
+
+    .b-resource-avatar {
+        width      : 1.5em;
+        height     : 1.5em;
+        opacity    : 0.5;
+        transition : opacity 0.2s;
+    }
+
+    &.b-checked .b-resource-avatar {
+        opacity : 1;
+    }
+
+    i.b-icon-unchecked::before {
+        content : '';
+    }
+
+    i.b-icon-checked::before {
+        content : "#{ $fa-var-check }";
+    }
+}

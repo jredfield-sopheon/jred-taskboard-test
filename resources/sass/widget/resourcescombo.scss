@@ -1,0 +1,88 @@
+@import '../variables';
+@import '../../core-sass/functions';
+
+.b-resources-picker {
+    // Overlay icon on avatar
+    .b-selected-icon {
+        //position : absolute;
+        //color    : #fff;
+        //left     : 1.2em;
+        display : none;
+    }
+
+    .b-resource-avatar {
+        font-size         : .8em;
+        margin-inline-end : .625em; // = .5 at 1em
+        opacity           : 0.5;
+        transition        : opacity 2s
+    }
+
+    .b-selected {
+        font-weight : 700;
+
+        .b-resource-avatar {
+            opacity : 1;
+        }
+    }
+}
+
+.b-resourcescombo.b-combo.b-uses-chipview {
+
+    &.b-not-editable {
+        .b-chipview .b-chip {
+            padding : 0;
+        }
+    }
+
+    .b-chipview {
+        margin  : 0;
+        padding : min(top($field-input-padding), 0.5em) right($field-input-padding) min(bottom($field-input-padding), 0.5em) left($field-input-padding);
+        gap     : 0.5em;
+
+        .b-chip {
+            display          : flex;
+            flex-direction   : column;
+            background-color : transparent;
+            padding          : 0;
+            margin           : 0;
+            align-items      : center;
+            font-size        : .8em;
+            position         : relative;
+
+            &:hover,
+            &.b-selected {
+                background-color : transparent;
+                color            : $field-color;
+
+                .b-close-icon {
+                    display : flex;
+                }
+            }
+
+            .b-close-icon {
+                display   : none;
+                position  : absolute;
+                top       : -.5em;
+                right     : -.5em;
+                font-size : .8em;
+            }
+        }
+
+        input {
+            padding : 0;
+        }
+    }
+}
+
+.b-resourcescombo-avatar-container {
+    margin-inline-start : $field-input-padding;
+
+    & ~ input {
+        padding-inline-start : 0.5em;
+    }
+
+    .b-resource-avatar {
+        width  : 1.8em;
+        height : 1.8em;
+    }
+}

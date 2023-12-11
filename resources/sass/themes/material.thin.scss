@@ -1,0 +1,21 @@
+@import 'vars/material-vars';
+@import '../all';
+
+.b-taskboardbase {
+    --taskboard-background            : #f9f9f9;
+    --taskboard-card-background       : #fff;
+    --taskboard-header-text-transform : none;
+}
+
+.b-todolistfield {
+    // To get label on top in material
+    flex-direction : column;
+
+    &.b-has-label.b-label-before .b-label {
+        align-self : flex-start;
+    }
+
+    .b-field-inner {
+        border-bottom : none;
+    }
+}

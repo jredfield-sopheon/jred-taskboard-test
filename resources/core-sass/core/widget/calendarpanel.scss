@@ -1,0 +1,113 @@
+.b-calendarpanel {
+    @include user-select-none();
+
+    &.b-outer {
+        display : inline-flex;
+    }
+
+    .b-week-number-cell {
+        display : none;
+    }
+
+    &.b-show-week-column {
+        .b-week-number-cell {
+            display        : flex;
+            flex-direction : column;
+        }
+    }
+
+    // Implement hideOtherMonthCells
+    &.b-hide-othermonth-cells {
+        .b-calendar-cell.b-other-month {
+            // They must take up space to keep the cell layout correct
+            visibility     : hidden;
+
+            // In addition to being invisible, they must not be interactive
+            pointer-events : none;
+        }
+    }
+
+    // Disabling means make them unresponsive to pointer interaction
+    &.b-disable-othermonth-cells {
+        .b-calendar-cell.b-other-month {
+            opacity : 0.7;
+
+            // In addition to being low opacity, they may not be interactive
+            pointer-events : none;
+
+            // But events starting from the first cell must still react as expected.
+            &.b-first-visible-cell {
+                .b-cal-event-wrap {
+                    pointer-events : all;
+                }
+            }
+        }
+    }
+
+    // So that there's no transparency showing through when sliding in the contentElement
+    .b-panel-body-wrap {
+        background-color : $panel-background-color;
+    }
+    
+    // The week days header
+    .b-calendar-weekdays {
+
+        // Day name cells
+        .b-calendar-day-header {
+            min-width  : var(--min-column-width);
+            flex       : 1 0 0;
+            text-align : center;
+        }
+    }
+
+    .b-calendarpanel-content {
+        align-items : stretch;
+
+        // Needs nested specificity.
+        &.b-hide-nonworking-days {
+            .b-calendar-day-header.b-nonworking-day, .b-calendar-cell.b-nonworking-day {
+                display : none;
+            }
+        }
+    }
+
+    .b-calendar-row {
+        display : flex;
+    }
+
+    .b-calendar-cell {
+        min-width       : var(--min-column-width);
+        display         : flex;
+        text-align      : center;
+        flex-direction  : column;
+        justify-content : center;
+    }
+
+    .b-calendar-days {
+        flex            : 1 1 auto;
+        display         : flex;
+        justify-content : space-around;
+
+        // Causes it to constrain width of the cells to force them to flex
+        // to 1/7th width (in a normal week). Without this, overflowing
+        // content (such as "+n more" indicators) can stretch cell width.
+        overflow        : hidden;
+    }
+
+    .b-weeks-container {
+        display        : flex;
+        flex-direction : column;
+
+        .b-calendar-row {
+            min-height : var(--min-row-height);
+        }
+    
+        &.b-min-columnwidth.b-horizontal-overflow {
+            align-items : flex-start;
+
+            .b-calendar-row {
+                overflow : hidden;
+            }
+        }
+    }
+}

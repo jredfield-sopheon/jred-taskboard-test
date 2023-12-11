@@ -1,0 +1,17 @@
+.b-slidetoggle {
+    .b-field-inner::before {
+        // RTL positions using right
+        transition : left, right $slidetoggle-transition-duration;
+    }
+
+    &.b-slidetoggle-checked {
+        .b-field-inner::before {
+            left : .35em;
+
+            .b-rtl & {
+                left  : auto;
+                right : .35em;
+            }
+        }
+    }
+}

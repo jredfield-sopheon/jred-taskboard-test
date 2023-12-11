@@ -1,0 +1,25 @@
+@import '../variables';
+
+:root, :host {
+    --taskboard-tooltip-label-font-size   : .8em;
+    --taskboard-tooltip-label-font-weight : null;
+    --taskboard-tooltip-title-font-size   : 1.1em;
+    --taskboard-tooltip-title-font-weight : 700;
+}
+
+.b-taskboard-tooltip .b-tooltip-content {
+    display               : grid;
+    grid-template-columns : auto 1fr;
+    gap                   : .5em 1em;
+}
+
+.b-taskboard-tooltip-title {
+    grid-column : span 2;
+    font-size   : var(--taskboard-tooltip-title-font-size);
+    font-weight : var(--taskboard-tooltip-title-font-weight);
+}
+
+.b-taskboard-tooltip-label {
+    font-size   : var(--taskboard-tooltip-label-font-size);
+    font-weight : var(--taskboard-tooltip-label-font-weight);
+}

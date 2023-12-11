@@ -1,0 +1,38 @@
+@import 'vars/classic-light-vars';
+@import '../all';
+
+:root, :host {
+    --taskboard-red         : #e04343;
+    --taskboard-pink        : #c72c6f;
+    --taskboard-purple      : #8132b3;
+    --taskboard-deep-purple : #5e3fba;
+    --taskboard-indigo      : #404dad;
+    --taskboard-blue        : #2e7dd9;
+    --taskboard-light-blue  : #1890d6;
+    --taskboard-cyan        : #119ca8;
+    --taskboard-teal        : #0d8274;
+    --taskboard-green       : #47964b;
+    --taskboard-light-green : #70a649;
+    --taskboard-lime        : #b8b83d;
+    --taskboard-yellow      : #ffbf59;
+    --taskboard-amber       : #ff9c1a;
+    --taskboard-orange      : #ff811a;
+    --taskboard-deep-orange : #f25e30;
+}
+
+.b-taskboardbase {
+    --taskboard-background                 : #fff;
+    --taskboard-color                      : #666;
+    --taskboard-card-background            : #fff;
+    --taskboard-card-body-color            : #888;
+    --taskboard-header-text-transform      : none;
+    --taskboard-column-background          : #f7f7f7;
+    --taskboard-column-header-font-size    : 1.1em;
+    --taskboard-swimlane-header-background : #eee;
+    --taskboard-swimlane-header-font-size  : 1em;
+
+    &.b-taskdrag {
+        --taskboard-taskdrag-drop-background : #eee;
+        --taskboard-taskdrag-drop-border     : 1px dashed #ddd;
+    }
+}

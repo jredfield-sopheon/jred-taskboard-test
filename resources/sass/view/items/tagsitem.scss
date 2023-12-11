@@ -1,0 +1,27 @@
+.b-taskboardbase {
+    --taskboard-tag-color         : var(--taskboard-card-footer-color);
+    --taskboard-tag-border        : 1px solid currentColor;
+    --taskboard-tag-border-radius : 1em;
+    --taskboard-tag-font-size     : .7em;
+    --taskboard-tag-gap           : .25em;
+    --taskboard-tag-padding       : .4em .5em;
+}
+
+.b-taskboard-tags {
+    display   : flex;
+    flex-flow : row wrap;
+
+    gap       : var(--taskboard-tag-gap);
+}
+
+.b-taskboard-tags-tag {
+    display       : inline-block;
+    white-space   : nowrap;
+    line-height   : 1em;
+
+    border        : var(--taskboard-tag-border);
+    border-radius : var(--taskboard-tag-border-radius);
+    color         : var(--taskboard-tag-color);
+    font-size     : var(--taskboard-tag-font-size);
+    padding       : var(--taskboard-tag-padding);
+}

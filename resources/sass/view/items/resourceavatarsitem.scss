@@ -1,0 +1,73 @@
+@import '../../variables';
+
+.b-taskboardbase {
+    --taskboard-resourceavatars-avatar-font-size    : .8em;
+    --taskboard-resourceavatars-avatar-size         : 2em;
+    --taskboard-resourceavatars-avatar-gap          : .5em;
+    --taskboard-resourceavatars-overflow-color      : #fff;
+    --taskboard-resourceavatars-overflow-background : #00000077;
+    --taskboard-resourceavatars-overlap             : var(--taskboard-resourceavatars-avatar-size) / 3;
+}
+
+.b-taskboard-resource-avatars {
+    display         : flex;
+    flex-wrap       : nowrap;
+    justify-content : flex-end;
+    align-items     : flex-end;
+    font-size       : var(--taskboard-resourceavatars-avatar-font-size);
+    gap             : var(--taskboard-resourceavatars-avatar-gap);
+    min-height      : calc(var(--taskboard-resourceavatars-avatar-size) * 1.1);
+
+    .b-resource-avatar {
+        transition : transform .1s;
+
+        height     : var(--taskboard-resourceavatars-avatar-size);
+        width      : var(--taskboard-resourceavatars-avatar-size);
+
+        &:hover {
+            transform : scale(1.1);
+        }
+    }
+
+    &.b-overlap {
+        gap : 0;
+
+        // Make all wrappers except last one narrower, image will overflow giving us a nice overlap
+        .b-taskboard-resource-avatar-wrap:not(:last-child) {
+            width : calc(var(--taskboard-resourceavatars-avatar-size) - var(--taskboard-resourceavatars-overlap));
+        }
+    }
+}
+
+.b-taskboard-resource-avatar-overflow {
+    position   : relative;
+    transition : transform .1s;
+
+    &::after {
+        position        : absolute;
+        top             : 0;
+        left            : 0;
+        bottom          : 0;
+        right           : 0;
+        border-radius   : 50%;
+        content         : attr(data-count);
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
+
+        background      : var(--taskboard-resourceavatars-overflow-background);
+        color           : var(--taskboard-resourceavatars-overflow-color);
+    }
+
+    &:hover {
+        transform : scale(1.1);
+    }
+}
+
+//.b-taskboard-column.b-micro-cards {
+//    .b-taskboard-resource-avatars {
+//        position  : absolute;
+//        left      : 50%;
+//        transform : translateX(-50%);
+//    }
+//}

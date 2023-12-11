@@ -1,0 +1,7 @@
+@import '../variables';
+
+.b-taskeditor-content {
+    padding          : $panel-content-padding;
+    gap              : top($panel-content-padding);
+    background-color : $panel-background-color;
+}

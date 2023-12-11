@@ -1,0 +1,140 @@
+@use "sass:math";
+@import '../../icon-font';
+@import '../../../fontawesome/scss/variables';
+
+// Embed theme details in content.
+// See DomHelper#themeInfo
+.b-theme-info:before {
+    content : '{"name":"Stockholm"}';
+}
+
+// redefine variables here
+$indigo                                    : #4531fe;
+$blue                                      : #3183fe;
+$teal                                      : #31feac;
+$light-green                               : #9efea7;
+$green                                     : #27ca37;
+$lime                                      : #83fe31;
+$yellow                                    : #ecfe26;
+$amber                                     : #ffc107;
+$orange                                    : #feac31;
+$deep-orange                               : #ff5722;
+$red                                       : #e53f2c;
+$purple                                    : #fe31ea;
+
+$light-gray                                : #e0e0e7;
+$gray                                      : #b0b0b7;
+$dark-gray                                 : #474849;
+
+$main-color                                : $orange;
+$secondary-color                           : $blue;
+
+$stockholm-font-weight                     : 500;
+$stockholm-light-fill                      : #fff5e6;
+
+$widget-border-width                       : 1px;
+$widget-border-color                       : #d0d1d2;
+$widget-text-dark-color                    : #4f5964;
+$widget-text-bright-color                  : #fff;
+$widget-highlight-color                    : fade_out($main-color, .4);
+$widget-disabled-border-color              : #e9eab;
+
+$panel-background-color                    : #f8f9fa;
+$panel-color                               : $widget-text-dark-color;
+$panel-header-color                        : $panel-color;
+$panel-header-background-color             : $stockholm-light-fill;
+$panel-header-font-size                    : 1.2em;
+$panel-header-font-weight                  : $stockholm-font-weight;
+$panel-header-border-bottom                : 1px solid $main-color;
+$panel-tool-color                          : $panel-color;
+$panel-toolbar-top-border-bottom           : 1px solid #d8d9da;
+$panel-toolbar-background-color            : #f3f4f5;
+
+$tooltip-color                             : $panel-color;
+$tooltip-side-header-font-size             : 1em;
+$list-color                                : $panel-color;
+
+$field-trigger-color                       : #b0b1b2;
+$list-highlight-color                      : fade-out($main-color, 0.7);
+
+$percent-bar-fill                          : $green;
+
+$float-box-shadow                          : 2px 2px 6px rgba(0, 0, 0, 0.1);
+
+$button-min-height                         : 2.7em;
+$button-text-transform                     : uppercase;
+$button-toolbar-font-size                  : .9em;
+$button-disabled-color                     : #a5a6a7;
+$button-hover-color                        : #fff;
+
+$datepicker-background-color               : $light-gray;
+$datepicker-selected-cell-background-color : $secondary-color;
+
+$container-label-color                     : #616161;
+$field-container-active-label-color        : #212121;
+$field-container-margin-left               : .3em;
+$field-trigger-font-size                   : .9em;
+
+$label-text-transform                      : uppercase;
+$label-font-size                           : .9em;
+$label-text-align                          : right;
+
+$float-box-shadow                          : 0 3px 6px rgba(0, 0, 0, 0.12), 0 3px 6px rgba(0, 0, 0, 0.24);
+$aligned-above-float-box-shadow            : -3px -1px 6px rgba(0, 0, 0, 0.12), 3px -2px 6px rgba(0, 0, 0, 0.24);
+
+$menu-color                                : $panel-color;
+$menu-background-color                     : #fff;
+$menu-highlight-color                      : $list-highlight-color;
+$menu-item-border-color                    : $light-gray;
+$menu-item-separator-color                 : darken($light-gray, 10);
+
+$list-item-border-color                    : $menu-item-border-color;
+
+$slider-thumb-color                        : $secondary-color;
+$slider-contrast                           : 30%;
+$slider-label-font-size                    : .8em;
+
+$container-color                           : $panel-color;
+
+$splitter-background-color                 : lighten($gray, 20%);
+
+$tabpanel-background-color                 : transparent;
+
+$tabpanel-body-padding                     : 1em 0;
+
+$tabpanel-tabs-border-bottom               : 1px solid $main-color;
+
+$tabpanel-tab-color                        : lighten($container-label-color, 10%);
+$tabpanel-tab-active-color                 : $container-label-color;
+$tabpanel-tab-hover-color                  : $container-label-color;
+$tabpanel-tab-active-color                 : darken($container-label-color, 15%);
+$tabpanel-tab-active-background-color      : $stockholm-light-fill;
+$tabpanel-tab-hover-background-color       : $stockholm-light-fill;
+$tabpanel-tab-text-transform               : uppercase;
+$tabpanel-tab-font-weight                  : $stockholm-font-weight;
+$tabpanel-tab-font-size                    : .9em;
+$tabpanel-tab-border-width                 : 0;
+$tabpanel-tab-padding                      : 0.9em;
+
+$tabpanel-border-width                     : 0;
+
+$toast-color                               : $panel-color;
+
+//region Checkbox color
+
+.b-slidetoggle .b-slidetoggle-label,
+:not(.b-fieldset-has-label) > .b-checkbox .b-checkbox-label {
+    text-transform : $label-text-transform;
+    font-size      : $label-font-size;
+
+    &::before {
+        font-size : math.div(1em, $label-font-size) * 1em;
+    }
+}
+
+//endregion
+
+// Popups own bbar uses same background as the popup
+.b-popup > .b-panel-body-wrap > .b-bottom-toolbar {
+    background : $panel-background-color;
+}

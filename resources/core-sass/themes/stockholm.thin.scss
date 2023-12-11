@@ -1,0 +1,8 @@
+@import 'vars/stockholm-vars';
+@import '../all';
+
+.b-checkbox {
+    --checkbox-unchecked-check-color    : transparent;
+    --checkbox-checked-background-color : transparent;
+    --checkbox-checked-check-color      : #474849;
+}

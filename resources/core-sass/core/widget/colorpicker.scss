@@ -1,0 +1,52 @@
+@import '../../variables';
+
+.b-colorpicker.b-list.b-widget {
+    display    : grid;
+    grid-gap   : .8em;
+    padding    : 1em;
+
+    .b-list-item {
+        border          : none;
+        width           : 2em;
+        height          : 2em;
+        border-radius   : 50%;
+        padding         : 0;
+        min-width       : 0;
+        justify-content : center;
+
+        &.b-no-color {
+            border : 1px solid $colorpicker-no-color-border-color;
+
+            &.b-selected:after {
+                color : $colorpicker-active-outline-color;
+            }
+
+            &:before {
+                content      : "";
+                border-right : 1px solid $colorpicker-no-color-border-color;
+                height       : 100%;
+                transform    : rotate(135deg);
+                position     : absolute;
+            }
+        }
+
+        &.b-color-active {
+            outline        : 2px solid $colorpicker-active-outline-color;
+            outline-offset : 2px;
+        }
+
+        &.b-selected:after {
+            content     : "#{ $fa-var-check }";
+            font-family : $icon-font;
+            font-weight : $icon-font-weight;
+            color       : #fff;
+            text-shadow : 0 0 1px #000;
+            font-size   : 1.2em;
+        }
+    }
+}
+
+.b-popup .b-colorpicker {
+    background : transparent;
+}
+

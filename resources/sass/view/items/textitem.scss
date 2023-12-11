@@ -1,0 +1,13 @@
+@import '../../variables';
+
+.b-taskboard-template,
+.b-taskboard-text {
+    color : var(--taskboard-card-body-color);
+}
+
+.b-taskboard-card-footer {
+    .b-taskboard-template,
+    .b-taskboard-text {
+        color : var(--taskboard-card-footer-color);
+    }
+}

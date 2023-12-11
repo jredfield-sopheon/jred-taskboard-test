@@ -1,0 +1,110 @@
+@import '../variables';
+
+.b-taskboardbase {
+    --taskboard-columndrag-background         : var(--taskboard-background);
+    --taskboard-columndrag-box-shadow         : var(--taskboard-taskdrag-card-box-shadow);
+    --taskboard-columndrag-drop-background    : var(--taskboard-taskdrag-drop-background);
+    --taskboard-columndrag-drop-border        : var(--taskboard-taskdrag-drop-border);
+    --taskboard-columndrag-invalid-background : #c6282811;
+    --taskboard-columndrag-invalid-color      : var(--taskboard-red);
+}
+
+// Hide original header element
+.b-taskboard-column-header.b-drag-original,
+.b-taskboard-column.b-drag-original {
+    display : none;
+}
+
+.b-taskboard-column-drag-proxy {
+    position       : absolute;
+    pointer-events : none;
+    z-index        : 3;
+    display        : flex;
+    flex-direction : column;
+
+    background     : var(--taskboard-columndrag-background);
+    border-radius  : var(--taskboard-column-header-border-radius);
+    box-shadow     : var(--taskboard-columndrag-box-shadow);
+
+    .b-taskboard-swimlane-expander,
+    .b-taskboard-swimlane-title {
+        visibility : hidden;
+    }
+
+    &.b-dropping {
+        transition : transform .2s;
+    }
+
+    // Match sticky headers height in drag proxy
+    .b-sticky-headers & .b-taskboard-column-header {
+        height     : var(--taskboard-column-header-sticky-height);
+        // height not respected for some reason
+        min-height : var(--taskboard-column-header-sticky-height);
+    }
+
+    .b-taskboard-column-header {
+        flex        : unset;
+        flex-shrink : 0;
+    }
+
+    .b-taskboard-swimlane-header {
+        margin : 0;
+    }
+
+    .b-taskboard-swimlane {
+        .b-taskboard-swimlane-body {
+            flex           : 1 0 0;
+            padding-inline : 0;
+        }
+
+        // No padding at bottom of last swimlane, to make proxy's box-shadow look better
+        &.b-last .b-taskboard-swimlane-body {
+            padding-bottom : 0;
+        }
+    }
+}
+
+.b-taskboard-column-drop-indicator {
+    background : var(--taskboard-columndrag-drop-background);
+
+    &.b-invalid {
+        background : var(--taskboard-columndrag-invalid-background);
+    }
+}
+
+.b-taskboard-column-headers .b-taskboard-column-drop-indicator {
+    border        : var(--taskboard-columndrag-drop-border);
+    border-bottom : none;
+
+    border-radius : var(--taskboard-column-header-border-radius);
+
+    //border-top-left-radius  : var(--taskboard-column-border-radius);
+    //border-top-right-radius : var(--taskboard-column-border-radius);
+
+    &.b-invalid {
+        border-color : var(--taskboard-columndrag-invalid-color);
+    }
+}
+
+.b-taskboard-swimlane .b-taskboard-column-drop-indicator {
+    border        : var(--taskboard-columndrag-drop-border);
+    border-top    : none;
+    border-bottom : none;
+
+    &.b-invalid {
+        border-color : var(--taskboard-columndrag-invalid-color);
+    }
+}
+
+.b-taskboard-swimlane.b-last .b-taskboard-column-drop-indicator {
+    border        : var(--taskboard-columndrag-drop-border);
+    border-top    : none;
+
+    //border-bottom-left-radius  : var(--taskboard-column-border-radius);
+    //border-bottom-right-radius : var(--taskboard-column-border-radius);
+    border-radius : var(--taskboard-column-border-radius);
+
+    &.b-invalid {
+        border-color : var(--taskboard-columndrag-invalid-color);
+    }
+}

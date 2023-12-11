@@ -1,0 +1,16 @@
+{
+  "name": "@bryntum/taskboard",
+  "version": "5.6.2",
+  "description": "Bryntum TaskBoard JavaScript component",
+  "author": {
+    "name": "Bryntum",
+    "url": "https://bryntum.com",
+    "email": "info@bryntum.com"
+  },
+  "homepage": "https://bryntum.com",
+  "license": "Commercial",
+  "devDependencies": {},
+  "main": "taskboard.module.js",
+  "types": "./taskboard.d.ts",
+  "type": "module"
+}

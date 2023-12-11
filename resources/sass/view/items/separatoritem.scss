@@ -1,0 +1,11 @@
+@import '../../variables';
+
+.b-taskboardbase {
+    --taskboard-separatoritem-color     : var(--taskboard-card-footer-color);
+}
+
+.b-taskboard-separator {
+    margin     : 0;
+    border     : none;
+    border-top : 1px solid var(--taskboard-separatoritem-color);
+}

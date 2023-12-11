@@ -1,0 +1,53 @@
+@import '../../variables';
+
+.b-timepicker {
+    .b-panel-content {
+        background-color : $panel-background-color;
+        align-items      : stretch;
+        padding          : 0.5em;
+        gap              : 0.5em;
+
+        .b-widget {
+            margin : 0;
+            flex   : 0 0 auto;
+            width  : auto;
+        }
+
+        .b-numberfield {
+            &.b-has-label {
+                margin-top : 0; // For material, where label goes on top but is now clipped out of visibility
+            }
+
+            // Field labels must be present for A11Y purposes, but are clipped out of visibility.
+            // Screen readers will be able to access them and announce them.
+            > .b-label {
+                clip-path : polygon(0 0);
+                position  : absolute;
+                contain   : strict;
+            }
+
+            // 2nd and onwards fields are preceded by a colon
+            &:not(.b-first-visible-child) {
+                &::before {
+                    content           : ":";
+                    align-self        : center;
+                    margin-inline-end : 0.5em;
+                    font-weight       : bold;
+                }
+            }
+
+            input {
+                width : 2.8em;
+            }
+        }
+
+        .b-button {
+            flex    : 0 0 3em;
+            padding : 0;
+
+            label {
+                text-overflow : clip;
+            }
+        }
+    }
+}

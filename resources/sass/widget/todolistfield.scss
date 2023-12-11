@@ -1,0 +1,82 @@
+@import '../variables';
+
+:root, :host {
+    --taskboard-todolistfield-background-color : null;
+    --taskboard-todolistfield-color            : null;
+}
+
+.b-todolistfield {
+    .b-list {
+        background-color : var(--taskboard-todolistfield-background-color);
+    }
+
+    .b-list-item {
+        color : var(--taskboard-todolistfield-color);
+
+        &.b-active:not(.b-disabled),
+        &:focus:not(.b-disabled) {
+            color : var(--taskboard-todolistfield-color);
+        }
+    }
+
+    .b-todo-checkbox {
+        margin-inline-end : .5em;
+
+        &::before {
+            content : "\f0c8";
+        }
+    }
+
+    .b-todo-text {
+        flex : 1;
+    }
+
+    body:not(.b-using-keyboard) & .b-list-item {
+        &.b-active:not(.b-disabled),
+        &:focus:not(.b-disabled) {
+            background-color : transparent;
+
+            &.b-selected {
+                color : #999;
+            }
+        }
+    }
+
+    .b-selected {
+        color : #999;
+
+        .b-todo-checkbox::before {
+            content : "\f14a";
+        }
+    }
+
+    > .b-field-inner {
+        flex-direction : column;
+        align-items    : stretch;
+    }
+
+    .b-todo-add {
+        border        : none;
+        border-top    : 1px dotted transparentize($list-item-border-color, .2);
+        border-radius : 0;
+        background    : transparent;
+    }
+
+    &:not(.b-editable) {
+        .b-todo-edit,
+        .b-todo-add {
+            display : none;
+        }
+    }
+}
+
+.b-todo-editor {
+    .b-field {
+        height : 100%;
+    }
+
+    .b-icon-trash {
+        color : var(--taskboard-red);
+    }
+}
+

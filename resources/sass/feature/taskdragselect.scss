@@ -1,0 +1,16 @@
+@import '../variables';
+
+:root, :host {
+    --taskboard-drag-select-border : 2px dashed #{$blue};
+}
+
+.b-dragselect-rect {
+    position         : absolute;
+    left             : 0;
+    top              : 0;
+    transform-origin : 0 0;
+    z-index          : 100;
+
+    border           : var(--taskboard-drag-select-border);
+    border-radius    : 3px;
+}

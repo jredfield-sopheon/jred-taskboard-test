@@ -1,0 +1,49 @@
+@import '../variables';
+
+.b-taskboardbase {
+    --taskboard-columntoolbars-color : #666;
+}
+
+.b-taskboard-column-tbar.b-toolbar,
+.b-taskboard-column-bbar.b-toolbar {
+    border     : none;
+    background : transparent;
+
+    .b-toolbar-content {
+        justify-content : center;
+        align-items     : center;
+
+        padding         : var(--taskboard-column-padding);
+    }
+
+    .b-button {
+        border     : none;
+        background : transparent;
+        min-height : 2.7em;
+        min-width  : 2.7em;
+
+        color      : var(--taskboard-columntoolbars-color);
+
+        &:not(.b-text) {
+            border-radius : 50%;
+        }
+    }
+}
+
+.b-taskboard-column.b-collapsed:not(.b-collapsing) {
+    .b-taskboard-column-tbar.b-toolbar,
+    .b-taskboard-column-bbar.b-toolbar {
+        display : none;
+    }
+}
+
+
+// Toolbars are first added to taskboards body and then their element is moved to the column,
+// make sure the first step doesn't affect visuals
+.b-taskboard-body > {
+    .b-taskboard-column-tbar.b-toolbar,
+    .b-taskboard-column-bbar.b-toolbar {
+        display : none;
+    }
+}
+

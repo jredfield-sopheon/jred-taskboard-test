@@ -1,0 +1,83 @@
+@import '../../variables';
+@import '../../functions';
+
+@keyframes progress {
+    0% {
+        width : 0;
+    }
+    100% {
+        width : 100%;
+    }
+}
+
+.b-toast {
+    --widget-primary-color-rgb        : #{hexToRGBString($toast-background-color)};
+
+    --toast-background-color          : rgb(var(--widget-primary-color-rgb));
+    --toast-color                     : #{$toast-color};
+    --toast-progress-background-color : #{$toast-progress-color};
+
+    background-color                  : var(--toast-background-color);
+    color                             : var(--toast-color);
+}
+
+.b-float-root > .b-floating.b-toast {
+    display            : inline-block;
+    overflow-x         : hidden;
+    overflow-y         : auto;
+
+    top                : auto;
+    inset-inline-end   : 2em;
+    inset-inline-start : auto;
+    max-width          : 60%;
+    max-height         : 60%;
+    line-height        : 1.4em;
+
+    // When its transform:translate and bottom are set, it will animate into place
+    transition         : bottom .25s ease-in, transform .25s ease-in;
+
+    padding            : 1em;
+    border-radius      : $widget-border-radius;
+
+    cursor             : pointer;
+
+    // TODO: Remove in 6.0
+    .b-legacy-inset & {
+        left  : auto;
+        right : 2em;
+
+        &.b-rtl {
+            left  : 2em;
+            right : auto
+        }
+    }
+
+    &.b-toast-hide {
+        // using important to override values set in style
+        bottom    : 0 !important;
+        transform : translateY(100%) !important;
+    }
+
+    &.b-icon:before {
+        margin-inline-end : .5em;
+    }
+}
+
+.b-toast-progress {
+    position                  : absolute;
+    top                       : 0;
+    inset-inline-start        : 0;
+    height                    : 3px;
+    background                : var(--toast-progress-background-color);
+    animation-name            : progress;
+    animation-timing-function : linear;
+
+    // TODO: Remove in 6.0
+    .b-legacy-inset & {
+        left : 0;
+
+        &.b-rtl {
+            right : 0;
+        }
+    }
+}

@@ -1,0 +1,81 @@
+@import '../../../variables';
+
+.b-histogram {
+    background-color : #fff;
+    padding          : 1px;
+    contain          : strict;
+
+    svg {
+        * {
+            vector-effect : non-scaling-stroke;
+        }
+    }
+
+    rect {
+        fill         : $histogram-bar-color;
+        stroke-width : $histogram-bar-border-width;
+        stroke       : $histogram-bar-border-color;
+
+        &.b-series-index-0 {
+            fill         : $histogram-bar0-color;
+            stroke-width : $histogram-bar0-border-width;
+            stroke       : $histogram-bar0-border-color;
+        }
+        &.b-series-index-1 {
+            fill         : $histogram-bar1-color;
+            stroke-width : $histogram-bar1-border-width;
+            stroke       : $histogram-bar1-border-color;
+        }
+        &.b-series-index-2 {
+            fill         : $histogram-bar2-color;
+            stroke-width : $histogram-bar2-border-width;
+            stroke       : $histogram-bar2-border-color;
+        }
+        &.b-series-index-3 {
+            fill         : $histogram-bar3-color;
+            stroke-width : $histogram-bar3-border-width;
+            stroke       : $histogram-bar3-border-color;
+        }
+        &.b-series-index-4 {
+            fill         : $histogram-bar4-color;
+            stroke-width : $histogram-bar4-border-width;
+            stroke       : $histogram-bar4-border-color;
+        }
+        &.b-series-index-5 {
+            fill         : $histogram-bar5-color;
+            stroke-width : $histogram-bar5-border-width;
+            stroke       : $histogram-bar5-border-color;
+        }
+
+        @if ($histogram-transition-duration != null) {
+            transition-property : x, y, width, height, fill;
+            transition-duration : $histogram-transition-duration;
+        }
+
+        &.b-exceeds-top {
+            fill : $histogram-exceeds-top-bar-color;
+        }
+    }
+
+    text.b-bar-legend {
+        writing-mode : tb;
+        text-anchor  : end;
+        font-size    : $histogram-bar-legend-font-size;
+        // So as not to interfere with mouseover of the bars
+        pointer-events : none;
+    }
+
+    svg {
+        // Because of the stroke coordinate system, 0.5 of a pixel at the edges overflows/
+        overflow : visible;
+    }
+
+    path {
+        fill           : transparent;
+        stroke         : $histogram-outline-color;
+        @if ($histogram-transition-duration != null) {
+            transition : d $histogram-transition-duration;
+        }
+        pointer-events : none;
+    }
+}
